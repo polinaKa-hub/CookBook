@@ -2,13 +2,10 @@ services:
   - type: web
     name: cookbook
     env: python
-    plan: free  # ← ЭТО ГЛАВНОЕ!
+    plan: free
     region: frankfurt
     buildCommand: |
-      cd Backend && pip install -r requirements.txt
-      cd ../frontend && npm install && npm run build
-    startCommand: cd Backend && gunicorn app:app
-    envVars:
-      - key: DATABASE_URL
-        value: sqlite:///cookbook.db
+      pip install -r Backend/requirements.txt
+      cd frontend && npm ci --only=production && npm run build
+    startCommand: gunicorn Backend.app:app
     healthCheckPath: /

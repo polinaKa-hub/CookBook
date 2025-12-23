@@ -189,4 +189,5 @@ keys.json
 # Файлы операционной системы
 Thumbs.db
 ehthumbs.db
-Desktop.ini
+Desktop.ini"frontend/build/" 
+"Backend/build/" 
