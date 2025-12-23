@@ -2,11 +2,15 @@ services:
   - type: web
     name: cookbook
     env: python
+    region: frankfurt  # или oregon, singapore
     buildCommand: |
       cd Backend && pip install -r requirements.txt
       cd ../Frontend && npm install && npm run build
-    startCommand: cd Backend && gunicorn app:app
+    startCommand: cd Backend && gunicorn app:app --bind 0.0.0.0:$PORT
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
       - key: DATABASE_URL
         value: sqlite:///cookbook.db
-    staticPublishPath: ./Frontend/build
+    healthCheckPath: /
+    autoDeploy: true
