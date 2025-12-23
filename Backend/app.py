@@ -4,6 +4,8 @@ from flask_cors import cross_origin
 from config import Config
 from flask import send_from_directory
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__)
 app.config.from_object(Config)
