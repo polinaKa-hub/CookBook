@@ -1,0 +1,106 @@
+/* AuthForms.css */
+.auth-form {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.auth-form h3 {
+  color: #000000;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.auth-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form input {
+  padding: 14px 16px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #000000;
+  transition: border-color 0.2s;
+  background: #FFFFFF;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #7DBA4A;
+}
+
+.auth-form input::placeholder {
+  color: #777777;
+}
+
+.p-label{
+  margin-top: 15px;
+  gap: 0;
+  text-align: left;
+} 
+
+.auth-switch {
+  margin-top: 20px;
+  color: #777777;
+  font-size: 14px;
+}
+
+
+.auth-btn{
+  margin-top: 25px;
+  font-size: 14pt;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: #7DBA4A;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+  padding: 0 4px;
+  font-size: 14px;
+
+}
+
+.link-btn:hover {
+  color: #6AA73F;
+}
+
+/* Стили для ошибок (если будут добавлены валидации) */
+.auth-error {
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.auth-success {
+  color: #7DBA4A;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .auth-form {
+    padding: 15px;
+  }
+  
+  .auth-form h3 {
+    font-size: 1.3rem;
+  }
+  
+  .auth-form input {
+    padding: 12px 14px;
+  }
+  
+  .auth-btn {
+    padding: 12px;
+  }
+}
