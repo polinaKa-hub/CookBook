@@ -16,7 +16,7 @@ const RecipeCard = ({
 }) => {
   const isAuthor = currentUser && (currentUser.id === recipe.author_id || currentUser.username === recipe.author);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [showAddToFavoritesBtn, setShowAddToFavoritesBtn] = useState(true);
+ //const [showAddToFavoritesBtn, setShowAddToFavoritesBtn] = useState(true);
   
   const shouldShowAddButton = !isMyRecipe && 
                             currentView !== 'recipeBook' && 

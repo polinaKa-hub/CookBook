@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './RecipeDetail.css';
 
 const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewProfile }) => {
-  const [servings, setServings] = useState(6);
+  //const [servings, setServings] = useState(6);
   const [newComment, setNewComment] = useState('');
   const [comments, setComments] = useState(recipe?.comments || []);
   const [loading, setLoading] = useState(false);
