@@ -418,19 +418,23 @@ def get_favorite_recipes():
 def serve_avatar(filename):
     return send_from_directory('uploads/avatars', filename)
 
-# Обслуживание React build
+
+
+# Маршрут для главной страницы React
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_react(path):
-    react_build_path = os.path.join(os.path.dirname(__file__), '..', 'Frontend', 'build')
-    if path and os.path.exists(os.path.join(react_build_path, path)):
-        return send_from_directory(react_build_path, path)
-    return send_from_directory(react_build_path, 'index.html')
+    # Путь к собранному React приложению
+    react_path = os.path.join(os.path.dirname(__file__), '..', 'Frontend', 'build')
+    
+    if path and os.path.exists(os.path.join(react_path, path)):
+        return send_from_directory(react_path, path)
+    
+    return send_from_directory(react_path, 'index.html')
 
-# ДОБАВЬТЕ ЭТО В САМЫЙ КОНЕЦ ФАЙЛА:
+# ДОБАВЬТЕ В САМЫЙ КОНЕЦ ФАЙЛА:
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get('PORT', 5000))
     with app.app_context():
         db.create_all()
     app.run(host='0.0.0.0', port=port)
-
