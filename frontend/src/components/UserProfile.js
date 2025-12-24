@@ -1,7 +1,7 @@
 // src/components/UserProfile.js
 import React, { useState, useEffect } from 'react';
 import './UserProfile.css';
-import RecipeCard from './RecipeCard';
+//import RecipeCard from './RecipeCard';
 
 const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToMyRecipes }) => {
   const [userData, setUserData] = useState(null);
