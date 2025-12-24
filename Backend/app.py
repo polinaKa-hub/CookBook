@@ -1,11 +1,14 @@
+import os
+import sys
+
+# Добавляем путь к текущей директории ДО всех импортов
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_cors import cross_origin
-from config import Config
+from config import Config  # Теперь это должно работать
 from flask import send_from_directory
-import os
-import sys
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__)
 app.config.from_object(Config)
