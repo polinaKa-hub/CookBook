@@ -4,13 +4,29 @@ import sys
 # Добавляем путь к текущей директории ДО всех импортов
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 from flask_cors import cross_origin
-from config import Config  # Теперь это должно работать
-from flask import send_from_directory
+from config import Config
+import logging
 
-app = Flask(__name__)
+# Настройка логирования
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+# Определяем пути
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FRONTEND_BUILD_PATH = os.path.join(BASE_DIR, '..', 'Frontend', 'build')
+
+# Проверяем существование папки с фронтендом
+logger.info(f"Checking frontend path: {FRONTEND_BUILD_PATH}")
+logger.info(f"Frontend exists: {os.path.exists(FRONTEND_BUILD_PATH)}")
+if os.path.exists(FRONTEND_BUILD_PATH):
+    logger.info(f"Index.html exists: {os.path.exists(os.path.join(FRONTEND_BUILD_PATH, 'index.html'))}")
+
+app = Flask(__name__, 
+            static_folder=FRONTEND_BUILD_PATH if os.path.exists(FRONTEND_BUILD_PATH) else None,
+            static_url_path='')
 app.config.from_object(Config)
 
 # Инициализация расширений
@@ -42,29 +58,18 @@ favorite_service = FavoriteService()
 
 # Инициализация контроллеров
 auth_controller = AuthController(auth_service, favorite_service)
-# После инициализации сервисов
-recipe_controller = RecipeController(recipe_service, comment_service, rating_service, auth_service)   # Добавляем auth_service
+recipe_controller = RecipeController(recipe_service, comment_service, rating_service, auth_service)
 
 # Создаем папку для загрузок если её нет
-if not os.path.exists('uploads'):
-    os.makedirs('uploads')
-if not os.path.exists('uploads/recipes'):
-    os.makedirs('uploads/recipes')
+uploads_path = os.path.join(BASE_DIR, 'uploads')
+if not os.path.exists(uploads_path):
+    os.makedirs(uploads_path)
+if not os.path.exists(os.path.join(uploads_path, 'recipes')):
+    os.makedirs(os.path.join(uploads_path, 'recipes'))
+if not os.path.exists(os.path.join(uploads_path, 'avatars')):
+    os.makedirs(os.path.join(uploads_path, 'avatars'))
 
-@app.route('/')
-def home():
-    return """
-    <html>
-    <head><title>CookBook</title></head>
-    <body>
-        <h1>CookBook Server</h1>
-        <p>Server is running with database!</p>
-        <p><a href="/api/test">Test API</a></p>
-        <p><a href="/api/recipes">All Recipes</a></p>
-        <p><a href="/api/init-db">Initialize DB</a></p>
-    </body>
-    </html>
-    """
+# ========== API МАРШРУТЫ ==========
 
 @app.route('/api/test')
 def test_api():
@@ -147,7 +152,6 @@ def filter_recipes():
 def serve_recipe_image(filename):
     return send_from_directory('uploads/recipes', filename)
 
-# Альтернативно, можно создать статическую папку:
 @app.route('/static/recipes/<path:filename>')
 def static_recipe_image(filename):
     return send_from_directory('uploads/recipes', filename)
@@ -213,19 +217,16 @@ def create_recipe_with_steps():
         if not session_id:
             return jsonify({'error': 'Not authenticated'}), 401
         
-        # Получаем пользователя из сессии
         user = auth_service.get_current_user(session_id)
         if not user:
             return jsonify({'error': 'Invalid session'}), 401
         
-        # Передаем управление в контроллер
         return recipe_controller.create_recipe_with_steps(user.id)
     except Exception as e:
         print(f"Error in create_recipe_with_steps route: {e}")
         import traceback
         traceback.print_exc()
         return jsonify({'error': 'Internal server error'}), 500
-    
 
 @app.route('/api/recipes/<int:recipe_id>/update-with-steps', methods=['PATCH'])
 def update_recipe_with_steps(recipe_id):
@@ -243,7 +244,6 @@ def update_recipe_with_steps(recipe_id):
             print(f"DEBUG: All sessions: {auth_service.sessions}")
             return jsonify({'error': 'Invalid session'}), 401
         
-        # Отладочный вывод формы
         print(f"DEBUG: Form data keys: {list(request.form.keys())}")
         print(f"DEBUG: Files keys: {list(request.files.keys())}")
 
@@ -254,7 +254,6 @@ def update_recipe_with_steps(recipe_id):
         traceback.print_exc()
         return jsonify({'error': 'Internal server error'}), 500
 
-# Обновление через PATCH
 @app.route('/api/recipes/<int:recipe_id>', methods=['PATCH'])
 def update_recipe(recipe_id):
     session_id = request.cookies.get('session_id')
@@ -266,7 +265,7 @@ def update_recipe(recipe_id):
         return jsonify({'error': 'Invalid session'}), 401
     
     return recipe_controller.update_recipe(recipe_id)
-# Добавим отладочный маршрут
+
 @app.route('/api/debug/sessions', methods=['GET'])
 def debug_sessions():
     """Отладочный маршрут для проверки сессий"""
@@ -274,7 +273,6 @@ def debug_sessions():
         'total_sessions': len(auth_service.sessions),
         'sessions': list(auth_service.sessions.keys())
     })
-
 
 @app.route('/api/recipes/user/<int:user_id>', methods=['GET'])
 def get_user_recipes(user_id):
@@ -285,14 +283,13 @@ def get_user_recipes(user_id):
 @cross_origin(supports_credentials=True)
 def delete_recipe(recipe_id):
     session_id = request.cookies.get('session_id')
-    print(f"DELETE DEBUG: Received session_id = {session_id}")  # Для отладки
+    print(f"DELETE DEBUG: Received session_id = {session_id}")
     
     if not session_id:
         return jsonify({'error': 'Not authenticated'}), 401
     
-    # ИСПОЛЬЗУЙТЕ ГЛОБАЛЬНЫЙ ЭКЗЕМПЛЯР auth_service
     user = auth_service.get_current_user(session_id)
-    print(f"DELETE DEBUG: User found = {user}")  # Для отладки
+    print(f"DELETE DEBUG: User found = {user}")
     
     if not user:
         print(f"DELETE DEBUG: Invalid session. Available sessions: {list(auth_service.sessions.keys())}")
@@ -300,16 +297,13 @@ def delete_recipe(recipe_id):
     
     return recipe_controller.delete_recipe(recipe_id)
 
-# Добавьте после существующих маршрутов
 @app.route('/api/users/<int:user_id>', methods=['GET', 'PUT'])
 def user_profile(user_id):
     if request.method == 'GET':
-        # Получение данных пользователя
         user = User.query.get(user_id)
         if not user:
             return jsonify({'error': 'User not found'}), 404
         
-        # Получаем статистику
         recipes_count = Recipe.query.filter_by(author_id=user_id).count()
         favorites_count = Favorite.query.filter_by(user_id=user_id).count()
         
@@ -325,7 +319,6 @@ def user_profile(user_id):
         })
     
     elif request.method == 'PUT':
-        # Обновление профиля
         session_id = request.cookies.get('session_id')
         if not session_id:
             return jsonify({'error': 'Not authenticated'}), 401
@@ -335,14 +328,12 @@ def user_profile(user_id):
             return jsonify({'error': 'Unauthorized'}), 403
         
         try:
-            # Обновляем email и bio
             if 'email' in request.form:
                 user.email = request.form['email']
             
             if 'bio' in request.form:
                 user.bio = request.form['bio']
             
-            # Обработка смены пароля
             current_password = request.form.get('current_password')
             new_password = request.form.get('new_password')
             
@@ -350,23 +341,18 @@ def user_profile(user_id):
                 if not user.check_password(current_password):
                     return jsonify({'error': 'Текущий пароль неверен'}), 400
                 
-                # Проверка сложности пароля
                 if len(new_password) < 8:
                     return jsonify({'error': 'Новый пароль должен содержать минимум 8 символов'}), 400
                 
                 user.set_password(new_password)
             
-            # Обработка аватара
             if 'avatar' in request.files:
                 avatar_file = request.files['avatar']
                 if avatar_file and avatar_file.filename:
-                    # Сохраняем аватар
-                    import os
+                    import uuid
                     from werkzeug.utils import secure_filename
                     from datetime import datetime
-                    import uuid
                     
-                    # Создаем уникальное имя файла
                     file_ext = avatar_file.filename.rsplit('.', 1)[1].lower() if '.' in avatar_file.filename else ''
                     if file_ext not in ['png', 'jpg', 'jpeg', 'gif']:
                         return jsonify({'error': 'Недопустимый формат изображения'}), 400
@@ -375,7 +361,6 @@ def user_profile(user_id):
                     unique_id = str(uuid.uuid4())[:8]
                     filename = f"avatar_{timestamp}_{unique_id}.{file_ext}"
                     
-                    # Сохраняем файл
                     upload_folder = 'uploads/avatars'
                     os.makedirs(upload_folder, exist_ok=True)
                     file_path = os.path.join(upload_folder, filename)
@@ -398,7 +383,6 @@ def user_profile(user_id):
             print(f"Error updating user profile: {e}")
             return jsonify({'error': 'Internal server error'}), 500
 
-# Эндпоинт для избранных рецептов
 @app.route('/api/auth/favorite-recipes', methods=['GET'])
 def get_favorite_recipes():
     session_id = request.cookies.get('session_id')
@@ -409,37 +393,49 @@ def get_favorite_recipes():
     if not user:
         return jsonify({'error': 'Invalid session'}), 401
     
-    # Получаем ID избранных рецептов
     favorites = Favorite.query.filter_by(user_id=user.id).all()
     favorite_ids = [f.recipe_id for f in favorites]
     
-    # Получаем рецепты
     recipes = Recipe.query.filter(Recipe.id.in_(favorite_ids)).all()
     
     return jsonify([recipe.to_dict() for recipe in recipes])
 
-# Маршрут для загрузки аватаров
 @app.route('/uploads/avatars/<path:filename>')
 def serve_avatar(filename):
     return send_from_directory('uploads/avatars', filename)
 
+# ========== REACT МАРШРУТЫ (В САМОМ КОНЦЕ) ==========
 
-
-# Маршрут для главной страницы React
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_react(path):
-    # Путь к собранному React приложению
-    react_path = os.path.join(os.path.dirname(__file__), '..', 'Frontend', 'build')
+    """Обслуживание React приложения"""
+    # Если запрос к API, пропускаем
+    if path.startswith('api/') or path.startswith('uploads/'):
+        return jsonify({'error': 'API route not found'}), 404
     
-    if path and os.path.exists(os.path.join(react_path, path)):
-        return send_from_directory(react_path, path)
+    # Если запрос к статическим файлам React
+    if path and os.path.exists(os.path.join(FRONTEND_BUILD_PATH, path)):
+        logger.info(f"Serving static file: {path}")
+        return send_from_directory(FRONTEND_BUILD_PATH, path)
     
-    return send_from_directory(react_path, 'index.html')
+    # Все остальные запросы отправляем на index.html
+    logger.info(f"Serving index.html for path: {path}")
+    return send_from_directory(FRONTEND_BUILD_PATH, 'index.html')
 
-# ДОБАВЬТЕ В САМЫЙ КОНЕЦ ФАЙЛА:
+# ========== ЗАПУСК ПРИЛОЖЕНИЯ ==========
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
+    
+    # Проверяем, существует ли папка сборки фронтенда
+    if os.path.exists(FRONTEND_BUILD_PATH):
+        logger.info(f"Frontend found at: {FRONTEND_BUILD_PATH}")
+    else:
+        logger.warning(f"Frontend NOT found at: {FRONTEND_BUILD_PATH}")
+        logger.warning("Run: cd Frontend && npm run build")
+    
     with app.app_context():
         db.create_all()
-    app.run(host='0.0.0.0', port=port)
+    
+    app.run(host='0.0.0.0', port=port, debug=True)

@@ -68,9 +68,15 @@ instance/
 
 # Dependencies
 node_modules/
+Frontend/node_modules/
 
 # Build output
-Frontend/build/    # ← ВАЖНО: эта папка будет создаваться на сервере
+Frontend/build/
+Frontend/.next/
+Frontend/out/
+
+# Production
+Frontend/.production/
 
 # Logs
 npm-debug.log*
@@ -117,22 +123,14 @@ jspm_packages/
 
 # dotenv environment variables file
 .env
+.env.production
+.env.development
 .env.test
+.env.local
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
-
-# Next.js build output
-.next
-
-# Nuxt.js build / generate output
-.nuxt
-dist
-
-# Storybook build outputs
-.out
-.storybook-out
 
 # ==================== IDE и СИСТЕМНЫЕ ФАЙЛЫ ====================
 
@@ -175,19 +173,34 @@ Temporary Items
 
 # ==================== ВАШИ ФАЙЛЫ ====================
 
-# Загрузки пользователей
-Backend/uploads/   # ← Если хотите хранить локально, но не на GitHub
+# Загрузки пользователей (локальные)
+Backend/uploads/
+uploads/
 
 # Логи приложения
 *.log
+logs/
 
 # Файлы с настройками (пароли, ключи)
-config.py          # Если в нем секреты
+config.py
 secrets.py
 keys.json
+*.key
+*.pem
 
 # Файлы операционной системы
 Thumbs.db
 ehthumbs.db
-Desktop.ini"frontend/build/" 
-"Backend/build/" 
+Desktop.ini
+
+# Render специфичные файлы
+render.yaml
+render.yml
+render-build.sh
+
+# Файлы операционной системы Windows
+desktop.ini
+
+# Временные файлы
+*.tmp
+*.temp
