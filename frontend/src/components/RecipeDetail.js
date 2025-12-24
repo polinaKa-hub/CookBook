@@ -100,7 +100,7 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
   const fetchComments = async () => {
     try {
       console.log('Fetching comments for recipe:', recipe.id);
-      const response = await fetch(`http://localhost:5000/api/recipes/${recipe.id}/comments`, {
+      const response = await fetch(`https://cookbook-9xc5.onrender.com/api/recipes/${recipe.id}/comments`, {
         credentials: 'include'
       });
       
@@ -150,7 +150,7 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
       setNewComment('');
       
       // Отправляем на сервер
-      const response = await fetch(`http://localhost:5000/api/recipes/${recipe.id}/comments`, {
+      const response = await fetch(`https://cookbook-9xc5.onrender.com/api/recipes/${recipe.id}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -194,7 +194,7 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
   // Функции для навигации
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:5000/api/auth/logout', {
+      await fetch('https://cookbook-9xc5.onrender.com/api/auth/logout', {
         method: 'POST',
         credentials: 'include'
       });

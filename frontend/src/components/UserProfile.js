@@ -34,7 +34,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
   const fetchUserProfile = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/users/${profileUserId}`, {
+      const response = await fetch(`https://cookbook-9xc5.onrender.com/api/users/${profileUserId}`, {
         credentials: 'include'
       });
       
@@ -108,7 +108,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
 
   const fetchUserRecipes = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/recipes/user/${profileUserId}`);
+      const response = await fetch(`https://cookbook-9xc5.onrender.com/api/recipes/user/${profileUserId}`);
       if (response.ok) {
         const recipes = await response.json();
         setUserRecipes(recipes);
@@ -120,7 +120,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
 
   const fetchFavoriteRecipes = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/favorite-recipes', {
+      const response = await fetch('https://cookbook-9xc5.onrender.com/api/auth/favorite-recipes', {
         credentials: 'include'
       });
       if (response.ok) {
@@ -153,7 +153,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
         formData.append('new_password', editForm.newPassword);
       }
       
-      const response = await fetch(`http://localhost:5000/api/users/${profileUserId}`, {
+      const response = await fetch(`https://cookbook-9xc5.onrender.com/api/users/${profileUserId}`, {
         method: 'PUT',
         body: formData,
         credentials: 'include'

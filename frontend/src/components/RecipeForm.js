@@ -252,7 +252,7 @@ const RecipeForm = ({ onAddRecipe, categories = [] }) => { // Добавляем
 
     try {
       // Используем правильный endpoint
-      const response = await fetch('http://localhost:5000/api/recipes/with-steps', {
+      const response = await fetch('https://cookbook-9xc5.onrender.com/api/recipes/with-steps', {
         method: 'POST',
         body: formDataToSend,
         credentials: 'include'  // Для cookies с session_id
