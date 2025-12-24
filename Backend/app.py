@@ -423,6 +423,21 @@ def serve_react(path):
     logger.info(f"Serving index.html for path: {path}")
     return send_from_directory(FRONTEND_BUILD_PATH, 'index.html')
 
+
+with app.app_context():
+    print("🔄 Создание таблиц базы данных...")
+    try:
+        db.create_all()
+        print("✅ Таблицы созданы успешно!")
+        
+        # Проверяем, есть ли данные
+        from models.recipe import Recipe
+        count = Recipe.query.count()
+        print(f"📊 В таблице recipes: {count} записей")
+        
+    except Exception as e:
+        print(f"❌ Ошибка создания таблиц: {e}")
+
 # ========== ЗАПУСК ПРИЛОЖЕНИЯ ==========
 
 if __name__ == '__main__':

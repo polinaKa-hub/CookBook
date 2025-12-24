@@ -1,0 +1,1169 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "email": "admin@cookbook.com",
+      "password_hash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+      "created_at": "2025-11-29 07:20:53.900232",
+      "bio": "",
+      "avatar_url": null
+    },
+    {
+      "id": 2,
+      "username": "chef_maria",
+      "email": "maria@cookbook.com",
+      "password_hash": "744fae83d509de40d5486584d1a7a2ba520ac3a5a3329d8013c0db56c1338fad",
+      "created_at": "2025-11-29 07:20:53.900238",
+      "bio": "Любитель проводить время на кухне",
+      "avatar_url": "/uploads/avatars/avatar_20251224_001808_32b462b0.jpg"
+    },
+    {
+      "id": 3,
+      "username": "food_lover",
+      "email": "alex@cookbook.com",
+      "password_hash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+      "created_at": "2025-11-29 07:20:53.900241",
+      "bio": "",
+      "avatar_url": null
+    },
+    {
+      "id": 4,
+      "username": "baking_pro",
+      "email": "olga@cookbook.com",
+      "password_hash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+      "created_at": "2025-11-29 07:20:53.900243",
+      "bio": "",
+      "avatar_url": null
+    },
+    {
+      "id": 5,
+      "username": "healthy_eater",
+      "email": "dmitry@cookbook.com",
+      "password_hash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+      "created_at": "2025-11-29 07:20:53.900244",
+      "bio": "",
+      "avatar_url": null
+    },
+    {
+      "id": 6,
+      "username": "Кирилл",
+      "email": "prazenikk@gmial.com",
+      "password_hash": "343c791deda10905e9c03bccaeb75413c9ee960af7b1f2291f4acc9925e2065a",
+      "created_at": "2025-12-18 09:40:51.652251",
+      "bio": "",
+      "avatar_url": null
+    }
+  ],
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Спагетти Карбонара",
+      "ingredients": "[{\"name\":\"Спагетти - 400г, Бекон - 200г, Яйца - 3 шт, Пармезан - 100г, Чеснок - 2 зубчика, Сливки - 100мл, Соль, Перец\",\"amount\":\"1\",\"unit\":\"г\"}]",
+      "instructions": "[{\"description\":\"1. Отварите спагетти согласно инструкции на упаковке.\",\"hasImage\":false},{\"description\":\"2. Обжарьте бекон до хрустящей корочки.\",\"hasImage\":false},{\"description\":\"3. Взбейте яйца со сливками и тертым пармезаном.\",\"hasImage\":false},{\"description\":\"4. Смешайте горячие спагетти с беконом, затем добавьте яичную смесь.\",\"hasImage\":false},{\"description\":\"5. Быстро перемешайте до образования кремовой текстуры.\",\"hasImage\":false}]",
+      "cooking_time": 25,
+      "category": "Паста",
+      "difficulty": "Средний",
+      "image_url": "/uploads/recipes/20251223_114445_b18c1fd6.jpg",
+      "author": "chef_maria",
+      "author_id": 2,
+      "rating": 4.2,
+      "rating_count": 16,
+      "views": 480,
+      "likes": 137,
+      "comments_count": 17,
+      "created_at": "2025-11-29 07:20:53.911497",
+      "updated_at": "2025-12-23 21:44:46.087803",
+      "servings": 6
+    },
+    {
+      "id": 2,
+      "title": "Салат Цезарь",
+      "ingredients": "[{\"name\":\"Листья салата Романо\",\"amount\":\"1\",\"unit\":\"шт\"},{\"name\":\"Куриное филе \",\"amount\":\"300\",\"unit\":\"г\"},{\"name\":\"Сухарики \",\"amount\":\"100\",\"unit\":\"г\"},{\"name\":\"Пармезан\",\"amount\":\"50\",\"unit\":\"г\"},{\"name\":\"Яйца\",\"amount\":\"2\",\"unit\":\"шт\"},{\"name\":\"Чеснок\",\"amount\":\"2\",\"unit\":\"шт\"},{\"name\":\"Оливковое масло, Лимонный сок\",\"amount\":\"1\",\"unit\":\"шт\"}]",
+      "instructions": "[{\"description\":\"1. Обжарьте куриное филе до готовности и нарежьте кубиками.\",\"hasImage\":true},{\"description\":\"2. Приготовьте соус: смешайте желтки, чеснок, лимонный сок и оливковое масло.\",\"hasImage\":true},{\"description\":\"3. Крупно нарвите листья салата.\",\"hasImage\":true},{\"description\":\"4. Соберите салат: салат, курица, сухарики, заправка.\",\"hasImage\":true},{\"description\":\"5. Посыпьте тертым пармезаном.\",\"hasImage\":true}]",
+      "cooking_time": 20,
+      "category": "Салаты",
+      "difficulty": "Легкий",
+      "image_url": "/uploads/recipes/20251223_143213_4689a508.jpg",
+      "author": "admin",
+      "author_id": 1,
+      "rating": 3.8,
+      "rating_count": 16,
+      "views": 162,
+      "likes": 107,
+      "comments_count": 19,
+      "created_at": "2025-11-29 07:20:53.914349",
+      "updated_at": "2025-12-23 21:45:46.845743",
+      "servings": 6
+    },
+    {
+      "id": 3,
+      "title": "Борщ украинский",
+      "ingredients": "[{\"name\":\"Говядина \",\"amount\":\"500\",\"unit\":\"г\"},{\"name\":\"Свекла\",\"amount\":\"2\",\"unit\":\"шт\"},{\"name\":\"Капуста \",\"amount\":\"299.9\",\"unit\":\"г\"},{\"name\":\"Картофель\",\"amount\":\"3\",\"unit\":\"шт\"},{\"name\":\"Морковь\",\"amount\":\"1\",\"unit\":\"шт\"},{\"name\":\" Лук \",\"amount\":\"1\",\"unit\":\"шт\"},{\"name\":\"Томатная паста \",\"amount\":\"2\",\"unit\":\"ст.л.\"},{\"name\":\"Сметана для подачи\",\"amount\":\"1\",\"unit\":\"ст.л.\"}]",
+      "instructions": "[{\"description\":\"1. Сварите бульон из говядины.\",\"hasImage\":true},{\"description\":\"2. Нарежьте овощи: свеклу соломкой, капусту, картофель кубиками.\",\"hasImage\":true},{\"description\":\"3. Обжарьте лук, морковь и свеклу с томатной пастой.\",\"hasImage\":true},{\"description\":\"4. Добавьте овощи в бульон и варите до готовности.\",\"hasImage\":true},{\"description\":\"5. Подавайте со сметаной.\",\"hasImage\":true}]",
+      "cooking_time": 90,
+      "category": "Супы",
+      "difficulty": "Средний",
+      "image_url": "/uploads/recipes/20251223_144403_7f2f79eb.jpg",
+      "author": "food_lover",
+      "author_id": 3,
+      "rating": 3.7,
+      "rating_count": 36,
+      "views": 433,
+      "likes": 44,
+      "comments_count": 21,
+      "created_at": "2025-11-29 07:20:53.915813",
+      "updated_at": "2025-12-23 21:44:50.895200",
+      "servings": 6
+    },
+    {
+      "id": 4,
+      "title": "Тирамису",
+      "ingredients": "[{\"name\":\"Маскарпоне - 500г, Яйца - 4 шт, Сахар - 100г, Печенье Савоярди - 200г, Кофе эспрессо - 300мл, Какао-порошок - 2 ст.л., Ликер Амаретто - 50мл\",\"amount\":\"0.9\",\"unit\":\"г\"}]",
+      "instructions": "[{\"description\":\"1. Приготовьте кофе и остудите.\",\"hasImage\":false},{\"description\":\"2. Взбейте желтки с сахаром, добавьте маскарпоне.\",\"hasImage\":false},{\"description\":\"3. Взбейте белки и аккуратно вмешайте в крем.\",\"hasImage\":false},{\"description\":\"4. Быстро обмакните печенье в кофе с ликером.\",\"hasImage\":false},{\"description\":\"5. Выложите слоями: печенье, крем, печенье, крем.\",\"hasImage\":false},{\"description\":\"6. Посыпьте какао и охлаждайте 6 часов.\",\"hasImage\":false}]",
+      "cooking_time": 40,
+      "category": "Десерты",
+      "difficulty": "Сложный",
+      "image_url": "/uploads/recipes/20251223_152823_7ce8858e.jpg",
+      "author": "baking_pro",
+      "author_id": 4,
+      "rating": 4.4,
+      "rating_count": 31,
+      "views": 465,
+      "likes": 22,
+      "comments_count": 24,
+      "created_at": "2025-11-29 07:20:53.917167",
+      "updated_at": "2025-12-23 12:28:23.498434",
+      "servings": 6
+    },
+    {
+      "id": 5,
+      "title": "Курица терияки",
+      "ingredients": "[{\"name\":\"Куриное филе - 500г, Соус терияки - 100мл, Мед - 2 ст.л., Чеснок - 3 зубчика, Имбирь - 1 см, Кунжут, Растительное масло\",\"amount\":\"1\",\"unit\":\"г\"}]",
+      "instructions": "[{\"description\":\"1. Нарежьте курицу кубиками.\",\"hasImage\":false},{\"description\":\"2. Приготовьте маринад: соус терияки, мед, чеснок, имбирь.\",\"hasImage\":false},{\"description\":\"3. Замаринуйте курицу на 30 минут.\",\"hasImage\":false},{\"description\":\"4. Обжарьте на сильном огне до золотистой корочки.\",\"hasImage\":false},{\"description\":\"5. Подавайте с рисом, посыпав кунжутом.\",\"hasImage\":false}]",
+      "cooking_time": 35,
+      "category": "Основные блюда",
+      "difficulty": "Легкий",
+      "image_url": "/uploads/recipes/20251223_153151_4fc03cad.jpg",
+      "author": "healthy_eater",
+      "author_id": 5,
+      "rating": 5.0,
+      "rating_count": 29,
+      "views": 57,
+      "likes": 57,
+      "comments_count": 12,
+      "created_at": "2025-11-29 07:20:53.919383",
+      "updated_at": "2025-12-23 12:31:51.560916",
+      "servings": 6
+    },
+    {
+      "id": 6,
+      "title": "Омлет с овощами",
+      "ingredients": "Яйца - 4 шт, Молоко - 50мл, Помидор - 1 шт, Перец болгарский - 1 шт, Лук - 0.5 шт, Сыр - 50г, Зелень, Соль, Перец",
+      "instructions": "1. Нарежьте овощи кубиками.\n2. Взбейте яйца с молоком, солью и перцем.\n3. Обжарьте овощи 5 минут.\n4. Залейте яичной смесью, посыпьте сыром.\n5. Готовьте под крышкой 7-10 минут.",
+      "cooking_time": 15,
+      "category": "Завтраки",
+      "difficulty": "Легкий",
+      "image_url": null,
+      "author": "chef_maria",
+      "author_id": 2,
+      "rating": 3.6,
+      "rating_count": 18,
+      "views": 422,
+      "likes": 198,
+      "comments_count": 27,
+      "created_at": "2025-11-29 07:20:53.919388",
+      "updated_at": "2025-12-23 11:27:43.557200",
+      "servings": 6
+    },
+    {
+      "id": 7,
+      "title": "Плов узбекский",
+      "ingredients": "Баранина - 700г, Рис - 500г, Морковь - 3 шт, Лук - 2 шт, Чеснок - 1 головка, Зира, Барбарис, Растительное масло",
+      "instructions": "1. Нарежьте мясо и овощи.\n2. В казане разогрейте масло, обжарьте мясо.\n3. Добавьте лук и морковь, обжаривайте 10 минут.\n4. Залейте водой, добавьте специи, тушите 40 минут.\n5. Добавьте рис и чеснок, готовьте 30 минут.",
+      "cooking_time": 120,
+      "category": "Основные блюда",
+      "difficulty": "Сложный",
+      "image_url": null,
+      "author": "food_lover",
+      "author_id": 3,
+      "rating": 4.9,
+      "rating_count": 48,
+      "views": 359,
+      "likes": 66,
+      "comments_count": 8,
+      "created_at": "2025-11-29 07:20:53.919391",
+      "updated_at": "2025-11-29 07:20:53.919392",
+      "servings": 6
+    },
+    {
+      "id": 8,
+      "title": "Греческий салат",
+      "ingredients": "[{\"name\":\"Помидоры - 3 шт, Огурцы - 2 шт, Перец - 1 шт, Красный лук - 1 шт, Маслины - 100г, Сыр Фета - 200г, Оливковое масло, Орегано, Лимонный сок\",\"amount\":\"1\",\"unit\":\"г\"}]",
+      "instructions": "[{\"description\":\"1. Крупно нарежьте овощи.\",\"hasImage\":false},{\"description\":\"2. Сыр нарежьте кубиками.\",\"hasImage\":false},{\"description\":\"3. Смешайте все ингредиенты.\",\"hasImage\":false},{\"description\":\"4. Заправьте оливковым маслом и лимонным соком.\",\"hasImage\":false},{\"description\":\"5. Посыпьте орегано.\",\"hasImage\":false}]",
+      "cooking_time": 10,
+      "category": "Салаты",
+      "difficulty": "Легкий",
+      "image_url": "/uploads/recipes/20251223_153029_b384a587.jpg",
+      "author": "healthy_eater",
+      "author_id": 5,
+      "rating": 3.6,
+      "rating_count": 15,
+      "views": 146,
+      "likes": 37,
+      "comments_count": 17,
+      "created_at": "2025-11-29 07:20:53.919393",
+      "updated_at": "2025-12-23 12:30:29.530593",
+      "servings": 6
+    },
+    {
+      "id": 9,
+      "title": "Шоколадный торт",
+      "ingredients": "[{\"name\":\"Мука - 200г, Какао - 50г, Сахар - 250г, Яйца - 4 шт, Сливочное масло - 200г, Разрыхлитель - 2 ч.л., Сметана - 200г, Шоколад - 100г\",\"amount\":\"1\",\"unit\":\"г\"}]",
+      "instructions": "[{\"description\":\"1. Взбейте масло с сахаром.\",\"hasImage\":false},{\"description\":\"2. Добавьте яйца по одному.\",\"hasImage\":false},{\"description\":\"3. Просеките муку с какао и разрыхлителем.\",\"hasImage\":false},{\"description\":\"4. Смешайте со сметаной.\",\"hasImage\":false},{\"description\":\"5. Выпекайте 40 минут при 180°C.\",\"hasImage\":false},{\"description\":\"6. Покройте глазурью.\",\"hasImage\":false}]",
+      "cooking_time": 60,
+      "category": "Десерты",
+      "difficulty": "Средний",
+      "image_url": "/uploads/recipes/20251223_152702_7063645b.jpg",
+      "author": "baking_pro",
+      "author_id": 4,
+      "rating": 4.3,
+      "rating_count": 29,
+      "views": 410,
+      "likes": 75,
+      "comments_count": 26,
+      "created_at": "2025-11-29 07:20:53.919395",
+      "updated_at": "2025-12-23 12:27:02.217936",
+      "servings": 6
+    },
+    {
+      "id": 10,
+      "title": "Томатный суп",
+      "ingredients": "[{\"name\":\"Помидоры - 1 кг, Лук - 1 шт, Чеснок - 2 зубчика, Сливки - 200мл, Базилик, Оливковое масло, Соль, Перец\",\"amount\":\"0.8\",\"unit\":\"г\"}]",
+      "instructions": "[{\"description\":\"1. Бланшируйте помидоры и снимите кожицу.\",\"hasImage\":true},{\"description\":\"2. Обжарьте лук и чеснок.\",\"hasImage\":true},{\"description\":\"3. Добавьте помидоры, тушите 15 минут.\",\"hasImage\":true},{\"description\":\"4. Пюрируйте блендером.\",\"hasImage\":true},{\"description\":\"5. Добавьте сливки и прогрейте.\",\"hasImage\":true},{\"description\":\"6. Украсьте базиликом.\",\"hasImage\":true}]",
+      "cooking_time": 30,
+      "category": "Супы",
+      "difficulty": "Легкий",
+      "image_url": "/uploads/recipes/20251223_142728_4e3ab92e.jpg",
+      "author": "chef_maria",
+      "author_id": 2,
+      "rating": 4.5,
+      "rating_count": 46,
+      "views": 149,
+      "likes": 181,
+      "comments_count": 25,
+      "created_at": "2025-11-29 07:20:53.919398",
+      "updated_at": "2025-12-23 11:27:28.300659",
+      "servings": 6
+    },
+    {
+      "id": 11,
+      "title": "Панкейки",
+      "ingredients": "мука 100г, сахар 1ст л, молоко 210 мл, яйцо 1шт",
+      "instructions": "1. перемешать яйцо с сахаром \r\n2. влить молоко",
+      "cooking_time": 40,
+      "category": "десерты",
+      "difficulty": "Легкий",
+      "image_url": "/static/recipes/20251212_222929_IMG_8159-tiny-2048x0.jpg",
+      "author": "Мария",
+      "author_id": null,
+      "rating": 0.0,
+      "rating_count": 0,
+      "views": 8,
+      "likes": 0,
+      "comments_count": 0,
+      "created_at": "2025-12-12 19:29:29.934909",
+      "updated_at": "2025-12-23 18:40:41.733292",
+      "servings": 6
+    },
+    {
+      "id": 12,
+      "title": "Панкейки",
+      "ingredients": "мука 100г, сахар 1ст л, молоко 210 мл, яйцо 1шт",
+      "instructions": "1. перемешать яйцо с сахаром \r\n2. влить молоко",
+      "cooking_time": 40,
+      "category": "десерты",
+      "difficulty": "Легкий",
+      "image_url": "/static/recipes/20251212_222929_IMG_8159-tiny-2048x0.jpg",
+      "author": "Мария",
+      "author_id": null,
+      "rating": 0.0,
+      "rating_count": 0,
+      "views": 6,
+      "likes": 0,
+      "comments_count": 0,
+      "created_at": "2025-12-12 19:29:30.282224",
+      "updated_at": "2025-12-20 19:04:58.335894",
+      "servings": 6
+    },
+    {
+      "id": 13,
+      "title": "Турецкий кекс",
+      "ingredients": "[{\"name\": \"\\u041c\\u043e\\u043b\\u043e\\u043a\\u043e\", \"amount\": \"400\", \"unit\": \"\\u043c\\u043b\"}, {\"name\": \"\\u0421\\u0430\\u0445\\u0430\\u0440\", \"amount\": \"100\", \"unit\": \"\\u0433\"}]",
+      "instructions": "[{\"description\": \"\\u0421\\u043c\\u0435\\u0448\\u0430\\u0442\\u044c \\u043c\\u043e\\u043b\\u043e\\u043a\\u043e \\u0441 \\u0441\\u0430\\u0445\\u0430\\u0440\\u043e\\u043c\", \"hasImage\": true}, {\"description\": \"\\u0412 \\u0434\\u0443\\u0445\\u043e\\u0432\\u043a\\u0443 \\u043d\\u0430 180\", \"hasImage\": true}]",
+      "cooking_time": 50,
+      "category": "Десерты",
+      "difficulty": "Легкий",
+      "image_url": "",
+      "author": "chef_maria",
+      "author_id": null,
+      "rating": 0.0,
+      "rating_count": 0,
+      "views": 3,
+      "likes": 0,
+      "comments_count": 0,
+      "created_at": "2025-12-14 16:56:41.676409",
+      "updated_at": "2025-12-21 16:49:24.802381",
+      "servings": 6
+    },
+    {
+      "id": 14,
+      "title": "ывапро",
+      "ingredients": "[{\"name\": \"\\u043b\\u043e\\u0440\\u043f\", \"amount\": \"123\", \"unit\": \"\\u0433\"}, {\"name\": \"\\u0446\\u0443\\u043a\\u0435\", \"amount\": \"12\", \"unit\": \"\\u0433\"}]",
+      "instructions": "[{\"description\": \"\\u044b\\u0432\\u043c\\u0447\\u0432\\u043c\\u0441\\u043c\", \"hasImage\": true}, {\"description\": \"\\u043e\\u0440\\u043e\\u0438\", \"hasImage\": true}]",
+      "cooking_time": 56,
+      "category": "десерты",
+      "difficulty": "Легкий",
+      "image_url": "",
+      "author": "chef_maria",
+      "author_id": null,
+      "rating": 0.0,
+      "rating_count": 0,
+      "views": 17,
+      "likes": 0,
+      "comments_count": 0,
+      "created_at": "2025-12-14 19:19:58.998433",
+      "updated_at": "2025-12-20 19:24:17.547165",
+      "servings": 6
+    },
+    {
+      "id": 15,
+      "title": "Карбонара",
+      "ingredients": "[{\"name\":\"паста\",\"amount\":\"300\",\"unit\":\"г\"},{\"name\":\"бекон\",\"amount\":\"100\",\"unit\":\"г\"},{\"name\":\"сливки\",\"amount\":\"200\",\"unit\":\"мл\"}]",
+      "instructions": "[{\"description\":\"Сварить спагетти\",\"hasImage\":true},{\"description\":\"Обжарить бекон\",\"hasImage\":true},{\"description\":\"Добавить к бекону пасту и сливки\",\"hasImage\":true},{\"description\":\"Тушить 15-20 минут помешивая\",\"hasImage\":true}]",
+      "cooking_time": 30,
+      "category": "Паста",
+      "difficulty": "Легкий",
+      "image_url": "/uploads/recipes/20251223_142242_8b00e5ee.jpg",
+      "author": "chef_maria",
+      "author_id": 2,
+      "rating": 0.0,
+      "rating_count": 0,
+      "views": 27,
+      "likes": 0,
+      "comments_count": 0,
+      "created_at": "2025-12-20 19:43:25.449998",
+      "updated_at": "2025-12-23 20:30:51.836971",
+      "servings": 6
+    },
+    {
+      "id": 16,
+      "title": "Булгур с тыквой",
+      "ingredients": "[{\"name\":\"Булгур\",\"amount\":\"100\",\"unit\":\"г\"},{\"name\":\"Тыква\",\"amount\":\"180\",\"unit\":\"г\"}]",
+      "instructions": "[{\"description\":\"Подготовьте необходимые ингредиенты. Вскипятите 250 мл воды.\",\"hasImage\":false}]",
+      "cooking_time": 50,
+      "category": "Паста",
+      "difficulty": "Средний",
+      "image_url": "/uploads/recipes/20251223_114313_27a170a2.png",
+      "author": "chef_maria",
+      "author_id": 2,
+      "rating": 0.0,
+      "rating_count": 0,
+      "views": 53,
+      "likes": 0,
+      "comments_count": 3,
+      "created_at": "2025-12-21 17:22:51.713117",
+      "updated_at": "2025-12-23 21:44:28.453993",
+      "servings": 2
+    }
+  ],
+  "favorites": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "recipe_id": 3,
+      "created_at": "2025-11-29 07:20:53.978510"
+    },
+    {
+      "id": 2,
+      "user_id": 1,
+      "recipe_id": 1,
+      "created_at": "2025-11-29 07:20:53.982008"
+    },
+    {
+      "id": 3,
+      "user_id": 1,
+      "recipe_id": 9,
+      "created_at": "2025-11-29 07:20:53.983153"
+    },
+    {
+      "id": 4,
+      "user_id": 2,
+      "recipe_id": 2,
+      "created_at": "2025-11-29 07:20:53.985989"
+    },
+    {
+      "id": 5,
+      "user_id": 2,
+      "recipe_id": 3,
+      "created_at": "2025-11-29 07:20:53.985993"
+    },
+    {
+      "id": 6,
+      "user_id": 3,
+      "recipe_id": 3,
+      "created_at": "2025-11-29 07:20:53.987002"
+    },
+    {
+      "id": 7,
+      "user_id": 3,
+      "recipe_id": 2,
+      "created_at": "2025-11-29 07:20:53.987005"
+    },
+    {
+      "id": 8,
+      "user_id": 3,
+      "recipe_id": 4,
+      "created_at": "2025-11-29 07:20:53.987732"
+    },
+    {
+      "id": 9,
+      "user_id": 3,
+      "recipe_id": 9,
+      "created_at": "2025-11-29 07:20:53.987734"
+    },
+    {
+      "id": 10,
+      "user_id": 3,
+      "recipe_id": 7,
+      "created_at": "2025-11-29 07:20:53.988371"
+    },
+    {
+      "id": 11,
+      "user_id": 4,
+      "recipe_id": 2,
+      "created_at": "2025-11-29 07:20:53.988905"
+    },
+    {
+      "id": 12,
+      "user_id": 4,
+      "recipe_id": 10,
+      "created_at": "2025-11-29 07:20:53.989698"
+    },
+    {
+      "id": 13,
+      "user_id": 4,
+      "recipe_id": 8,
+      "created_at": "2025-11-29 07:20:53.990676"
+    },
+    {
+      "id": 14,
+      "user_id": 4,
+      "recipe_id": 7,
+      "created_at": "2025-11-29 07:20:53.990680"
+    },
+    {
+      "id": 15,
+      "user_id": 4,
+      "recipe_id": 3,
+      "created_at": "2025-11-29 07:20:53.990681"
+    },
+    {
+      "id": 16,
+      "user_id": 4,
+      "recipe_id": 6,
+      "created_at": "2025-11-29 07:20:53.991549"
+    },
+    {
+      "id": 17,
+      "user_id": 5,
+      "recipe_id": 9,
+      "created_at": "2025-11-29 07:20:53.992199"
+    },
+    {
+      "id": 18,
+      "user_id": 5,
+      "recipe_id": 10,
+      "created_at": "2025-11-29 07:20:53.992201"
+    },
+    {
+      "id": 19,
+      "user_id": 5,
+      "recipe_id": 8,
+      "created_at": "2025-11-29 07:20:53.992203"
+    },
+    {
+      "id": 20,
+      "user_id": 5,
+      "recipe_id": 5,
+      "created_at": "2025-11-29 07:20:53.992856"
+    },
+    {
+      "id": 21,
+      "user_id": 5,
+      "recipe_id": 1,
+      "created_at": "2025-11-29 07:20:53.992859"
+    },
+    {
+      "id": 22,
+      "user_id": 5,
+      "recipe_id": 2,
+      "created_at": "2025-11-29 07:20:53.992861"
+    },
+    {
+      "id": 23,
+      "user_id": 6,
+      "recipe_id": 3,
+      "created_at": "2025-12-18 09:41:01.817317"
+    },
+    {
+      "id": 24,
+      "user_id": 6,
+      "recipe_id": 13,
+      "created_at": "2025-12-18 09:41:18.711007"
+    }
+  ],
+  "ratings": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "recipe_id": 1,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.956129"
+    },
+    {
+      "id": 2,
+      "user_id": 2,
+      "recipe_id": 1,
+      "rating": 3,
+      "created_at": "2025-11-29 07:20:53.958685"
+    },
+    {
+      "id": 3,
+      "user_id": 3,
+      "recipe_id": 1,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.959363"
+    },
+    {
+      "id": 4,
+      "user_id": 5,
+      "recipe_id": 1,
+      "rating": 4,
+      "created_at": "2025-11-29 07:20:53.959887"
+    },
+    {
+      "id": 5,
+      "user_id": 1,
+      "recipe_id": 2,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.960404"
+    },
+    {
+      "id": 6,
+      "user_id": 4,
+      "recipe_id": 2,
+      "rating": 4,
+      "created_at": "2025-11-29 07:20:53.960901"
+    },
+    {
+      "id": 7,
+      "user_id": 1,
+      "recipe_id": 3,
+      "rating": 4,
+      "created_at": "2025-11-29 07:20:53.962107"
+    },
+    {
+      "id": 8,
+      "user_id": 2,
+      "recipe_id": 3,
+      "rating": 3,
+      "created_at": "2025-11-29 07:20:53.962110"
+    },
+    {
+      "id": 9,
+      "user_id": 4,
+      "recipe_id": 3,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.962111"
+    },
+    {
+      "id": 10,
+      "user_id": 5,
+      "recipe_id": 3,
+      "rating": 3,
+      "created_at": "2025-11-29 07:20:53.962112"
+    },
+    {
+      "id": 11,
+      "user_id": 1,
+      "recipe_id": 4,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.963071"
+    },
+    {
+      "id": 12,
+      "user_id": 2,
+      "recipe_id": 4,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.963074"
+    },
+    {
+      "id": 13,
+      "user_id": 3,
+      "recipe_id": 4,
+      "rating": 3,
+      "created_at": "2025-11-29 07:20:53.963076"
+    },
+    {
+      "id": 14,
+      "user_id": 4,
+      "recipe_id": 4,
+      "rating": 4,
+      "created_at": "2025-11-29 07:20:53.963077"
+    },
+    {
+      "id": 15,
+      "user_id": 5,
+      "recipe_id": 4,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.963078"
+    },
+    {
+      "id": 16,
+      "user_id": 1,
+      "recipe_id": 5,
+      "rating": 3,
+      "created_at": "2025-11-29 07:20:53.965287"
+    },
+    {
+      "id": 17,
+      "user_id": 3,
+      "recipe_id": 5,
+      "rating": 4,
+      "created_at": "2025-11-29 07:20:53.965292"
+    },
+    {
+      "id": 18,
+      "user_id": 4,
+      "recipe_id": 5,
+      "rating": 3,
+      "created_at": "2025-11-29 07:20:53.965293"
+    },
+    {
+      "id": 19,
+      "user_id": 1,
+      "recipe_id": 6,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.967817"
+    },
+    {
+      "id": 20,
+      "user_id": 3,
+      "recipe_id": 6,
+      "rating": 4,
+      "created_at": "2025-11-29 07:20:53.967822"
+    },
+    {
+      "id": 21,
+      "user_id": 4,
+      "recipe_id": 6,
+      "rating": 4,
+      "created_at": "2025-11-29 07:20:53.967824"
+    },
+    {
+      "id": 22,
+      "user_id": 5,
+      "recipe_id": 6,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.967826"
+    },
+    {
+      "id": 23,
+      "user_id": 2,
+      "recipe_id": 7,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.969107"
+    },
+    {
+      "id": 24,
+      "user_id": 4,
+      "recipe_id": 7,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.969110"
+    },
+    {
+      "id": 25,
+      "user_id": 5,
+      "recipe_id": 7,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.969112"
+    },
+    {
+      "id": 26,
+      "user_id": 1,
+      "recipe_id": 8,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.970206"
+    },
+    {
+      "id": 27,
+      "user_id": 2,
+      "recipe_id": 8,
+      "rating": 4,
+      "created_at": "2025-11-29 07:20:53.970210"
+    },
+    {
+      "id": 28,
+      "user_id": 5,
+      "recipe_id": 8,
+      "rating": 4,
+      "created_at": "2025-11-29 07:20:53.970212"
+    },
+    {
+      "id": 29,
+      "user_id": 2,
+      "recipe_id": 9,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.971272"
+    },
+    {
+      "id": 30,
+      "user_id": 3,
+      "recipe_id": 9,
+      "rating": 4,
+      "created_at": "2025-11-29 07:20:53.971277"
+    },
+    {
+      "id": 31,
+      "user_id": 4,
+      "recipe_id": 9,
+      "rating": 3,
+      "created_at": "2025-11-29 07:20:53.971278"
+    },
+    {
+      "id": 32,
+      "user_id": 1,
+      "recipe_id": 10,
+      "rating": 3,
+      "created_at": "2025-11-29 07:20:53.972603"
+    },
+    {
+      "id": 33,
+      "user_id": 2,
+      "recipe_id": 10,
+      "rating": 4,
+      "created_at": "2025-11-29 07:20:53.972607"
+    },
+    {
+      "id": 34,
+      "user_id": 3,
+      "recipe_id": 10,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.972608"
+    },
+    {
+      "id": 35,
+      "user_id": 4,
+      "recipe_id": 10,
+      "rating": 3,
+      "created_at": "2025-11-29 07:20:53.972610"
+    },
+    {
+      "id": 36,
+      "user_id": 5,
+      "recipe_id": 10,
+      "rating": 5,
+      "created_at": "2025-11-29 07:20:53.972612"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "recipe_id": 1,
+      "user_id": 5,
+      "text": "В следующий раз добавлю больше специй",
+      "created_at": "2025-11-29 07:20:53.928650"
+    },
+    {
+      "id": 2,
+      "recipe_id": 1,
+      "user_id": 4,
+      "text": "Спасибо за подробные инструкции",
+      "created_at": "2025-11-29 07:20:53.933799"
+    },
+    {
+      "id": 3,
+      "recipe_id": 2,
+      "user_id": 1,
+      "text": "Просто и вкусно, рекомендую!",
+      "created_at": "2025-11-29 07:20:53.936196"
+    },
+    {
+      "id": 4,
+      "recipe_id": 2,
+      "user_id": 2,
+      "text": "Мои дети в восторге!",
+      "created_at": "2025-11-29 07:20:53.937670"
+    },
+    {
+      "id": 5,
+      "recipe_id": 3,
+      "user_id": 5,
+      "text": "Буду готовить снова обязательно",
+      "created_at": "2025-11-29 07:20:53.939092"
+    },
+    {
+      "id": 6,
+      "recipe_id": 3,
+      "user_id": 2,
+      "text": "Спасибо за подробные инструкции",
+      "created_at": "2025-11-29 07:20:53.939181"
+    },
+    {
+      "id": 7,
+      "recipe_id": 4,
+      "user_id": 5,
+      "text": "Идеально для семейного ужина",
+      "created_at": "2025-11-29 07:20:53.940557"
+    },
+    {
+      "id": 8,
+      "recipe_id": 4,
+      "user_id": 2,
+      "text": "Просто и вкусно, рекомендую!",
+      "created_at": "2025-11-29 07:20:53.940620"
+    },
+    {
+      "id": 9,
+      "recipe_id": 4,
+      "user_id": 1,
+      "text": "Идеальное сочетание ингредиентов",
+      "created_at": "2025-11-29 07:20:53.940649"
+    },
+    {
+      "id": 10,
+      "recipe_id": 5,
+      "user_id": 2,
+      "text": "Просто и вкусно, рекомендую!",
+      "created_at": "2025-11-29 07:20:53.941471"
+    },
+    {
+      "id": 11,
+      "recipe_id": 5,
+      "user_id": 4,
+      "text": "Спасибо за подробные инструкции",
+      "created_at": "2025-11-29 07:20:53.941519"
+    },
+    {
+      "id": 12,
+      "recipe_id": 5,
+      "user_id": 1,
+      "text": "Вкусно, но нужно больше соли",
+      "created_at": "2025-11-29 07:20:53.941547"
+    },
+    {
+      "id": 13,
+      "recipe_id": 6,
+      "user_id": 1,
+      "text": "Буду готовить снова обязательно",
+      "created_at": "2025-11-29 07:20:53.942305"
+    },
+    {
+      "id": 14,
+      "recipe_id": 6,
+      "user_id": 5,
+      "text": "В следующий раз добавлю больше специй",
+      "created_at": "2025-11-29 07:20:53.942354"
+    },
+    {
+      "id": 15,
+      "recipe_id": 6,
+      "user_id": 2,
+      "text": "Мои дети в восторге!",
+      "created_at": "2025-11-29 07:20:53.942382"
+    },
+    {
+      "id": 16,
+      "recipe_id": 6,
+      "user_id": 2,
+      "text": "Вкусно, но нужно больше соли",
+      "created_at": "2025-11-29 07:20:53.942407"
+    },
+    {
+      "id": 17,
+      "recipe_id": 6,
+      "user_id": 5,
+      "text": "Спасибо за подробные инструкции",
+      "created_at": "2025-11-29 07:20:53.942431"
+    },
+    {
+      "id": 18,
+      "recipe_id": 7,
+      "user_id": 1,
+      "text": "Буду готовить снова обязательно",
+      "created_at": "2025-11-29 07:20:53.943299"
+    },
+    {
+      "id": 19,
+      "recipe_id": 7,
+      "user_id": 3,
+      "text": "Идеально для семейного ужина",
+      "created_at": "2025-11-29 07:20:53.944150"
+    },
+    {
+      "id": 20,
+      "recipe_id": 7,
+      "user_id": 2,
+      "text": "Вкусно, но нужно больше соли",
+      "created_at": "2025-11-29 07:20:53.944220"
+    },
+    {
+      "id": 21,
+      "recipe_id": 7,
+      "user_id": 3,
+      "text": "Идеальное сочетание ингредиентов",
+      "created_at": "2025-11-29 07:20:53.944258"
+    },
+    {
+      "id": 22,
+      "recipe_id": 8,
+      "user_id": 1,
+      "text": "Буду готовить снова обязательно",
+      "created_at": "2025-11-29 07:20:53.945269"
+    },
+    {
+      "id": 23,
+      "recipe_id": 8,
+      "user_id": 4,
+      "text": "Получилось даже лучше, чем на фото",
+      "created_at": "2025-11-29 07:20:53.945343"
+    },
+    {
+      "id": 24,
+      "recipe_id": 8,
+      "user_id": 1,
+      "text": "Идеально для семейного ужина",
+      "created_at": "2025-11-29 07:20:53.945382"
+    },
+    {
+      "id": 25,
+      "recipe_id": 8,
+      "user_id": 2,
+      "text": "Идеальное сочетание ингредиентов",
+      "created_at": "2025-11-29 07:20:53.945406"
+    },
+    {
+      "id": 26,
+      "recipe_id": 9,
+      "user_id": 5,
+      "text": "Просто и вкусно, рекомендую!",
+      "created_at": "2025-11-29 07:20:53.946184"
+    },
+    {
+      "id": 27,
+      "recipe_id": 9,
+      "user_id": 4,
+      "text": "В следующий раз добавлю больше специй",
+      "created_at": "2025-11-29 07:20:53.946235"
+    },
+    {
+      "id": 28,
+      "recipe_id": 9,
+      "user_id": 4,
+      "text": "Отличный рецепт! Получилось очень вкусно!",
+      "created_at": "2025-11-29 07:20:53.946264"
+    },
+    {
+      "id": 29,
+      "recipe_id": 9,
+      "user_id": 4,
+      "text": "Мои дети в восторге!",
+      "created_at": "2025-11-29 07:20:53.946288"
+    },
+    {
+      "id": 30,
+      "recipe_id": 9,
+      "user_id": 3,
+      "text": "Буду готовить снова обязательно",
+      "created_at": "2025-11-29 07:20:53.946385"
+    },
+    {
+      "id": 31,
+      "recipe_id": 10,
+      "user_id": 2,
+      "text": "Идеально для семейного ужина",
+      "created_at": "2025-11-29 07:20:53.948565"
+    },
+    {
+      "id": 32,
+      "recipe_id": 10,
+      "user_id": 2,
+      "text": "Просто и вкусно, рекомендую!",
+      "created_at": "2025-11-29 07:20:53.948856"
+    },
+    {
+      "id": 33,
+      "recipe_id": 16,
+      "user_id": 2,
+      "text": "cool!!!",
+      "created_at": "2025-12-23 08:57:06.261676"
+    },
+    {
+      "id": 34,
+      "recipe_id": 16,
+      "user_id": 2,
+      "text": "Легко и быстро",
+      "created_at": "2025-12-23 09:03:50.461637"
+    },
+    {
+      "id": 35,
+      "recipe_id": 16,
+      "user_id": 2,
+      "text": "неплохо",
+      "created_at": "2025-12-23 09:07:23.930811"
+    }
+  ],
+  "recipe_step_images": [
+    {
+      "id": 1,
+      "recipe_id": 15,
+      "step_index": 0,
+      "image_url": "/uploads/recipes/20251223_142242_32cb9991.jpg",
+      "created_at": "2025-12-23 11:22:42.649550"
+    },
+    {
+      "id": 2,
+      "recipe_id": 15,
+      "step_index": 1,
+      "image_url": "/uploads/recipes/20251223_142242_7b510288.jpg",
+      "created_at": "2025-12-23 11:22:42.649555"
+    },
+    {
+      "id": 3,
+      "recipe_id": 15,
+      "step_index": 2,
+      "image_url": "/uploads/recipes/20251223_142242_a4efa2fc.jpg",
+      "created_at": "2025-12-23 11:22:42.649557"
+    },
+    {
+      "id": 4,
+      "recipe_id": 15,
+      "step_index": 3,
+      "image_url": "/uploads/recipes/20251223_142242_851b326c.jpg",
+      "created_at": "2025-12-23 11:22:42.649559"
+    },
+    {
+      "id": 5,
+      "recipe_id": 10,
+      "step_index": 0,
+      "image_url": "/uploads/recipes/20251223_142728_75b1edeb.jpg",
+      "created_at": "2025-12-23 11:27:28.320328"
+    },
+    {
+      "id": 6,
+      "recipe_id": 10,
+      "step_index": 1,
+      "image_url": "/uploads/recipes/20251223_142728_dca303c0.jpg",
+      "created_at": "2025-12-23 11:27:28.320333"
+    },
+    {
+      "id": 7,
+      "recipe_id": 10,
+      "step_index": 2,
+      "image_url": "/uploads/recipes/20251223_142728_ba38603c.jpg",
+      "created_at": "2025-12-23 11:27:28.320335"
+    },
+    {
+      "id": 8,
+      "recipe_id": 10,
+      "step_index": 3,
+      "image_url": "/uploads/recipes/20251223_142728_5a581f8e.jpg",
+      "created_at": "2025-12-23 11:27:28.320337"
+    },
+    {
+      "id": 9,
+      "recipe_id": 10,
+      "step_index": 4,
+      "image_url": "/uploads/recipes/20251223_142728_29417107.jpg",
+      "created_at": "2025-12-23 11:27:28.320339"
+    },
+    {
+      "id": 10,
+      "recipe_id": 10,
+      "step_index": 5,
+      "image_url": "/uploads/recipes/20251223_142728_f7dabf08.jpg",
+      "created_at": "2025-12-23 11:27:28.320340"
+    },
+    {
+      "id": 11,
+      "recipe_id": 2,
+      "step_index": 0,
+      "image_url": "/uploads/recipes/20251223_143821_2c9870e1.jpg",
+      "created_at": "2025-12-23 11:38:21.271290"
+    },
+    {
+      "id": 12,
+      "recipe_id": 2,
+      "step_index": 1,
+      "image_url": "/uploads/recipes/20251223_143821_ea8d3a54.jpg",
+      "created_at": "2025-12-23 11:38:21.271298"
+    },
+    {
+      "id": 13,
+      "recipe_id": 2,
+      "step_index": 2,
+      "image_url": "/uploads/recipes/20251223_143821_d3106f31.jpg",
+      "created_at": "2025-12-23 11:38:21.271301"
+    },
+    {
+      "id": 14,
+      "recipe_id": 2,
+      "step_index": 3,
+      "image_url": "/uploads/recipes/20251223_143821_c85f8ef4.jpg",
+      "created_at": "2025-12-23 11:38:21.271304"
+    },
+    {
+      "id": 15,
+      "recipe_id": 2,
+      "step_index": 4,
+      "image_url": "/uploads/recipes/20251223_143821_3f7d3d05.jpg",
+      "created_at": "2025-12-23 11:38:21.271307"
+    },
+    {
+      "id": 16,
+      "recipe_id": 3,
+      "step_index": 0,
+      "image_url": "/uploads/recipes/20251223_144403_cb8a16af.jpg",
+      "created_at": "2025-12-23 11:44:03.942452"
+    },
+    {
+      "id": 17,
+      "recipe_id": 3,
+      "step_index": 1,
+      "image_url": "/uploads/recipes/20251223_144403_090cdbc8.jpg",
+      "created_at": "2025-12-23 11:44:03.942520"
+    },
+    {
+      "id": 18,
+      "recipe_id": 3,
+      "step_index": 2,
+      "image_url": "/uploads/recipes/20251223_144403_32304aff.jpg",
+      "created_at": "2025-12-23 11:44:03.942530"
+    },
+    {
+      "id": 19,
+      "recipe_id": 3,
+      "step_index": 3,
+      "image_url": "/uploads/recipes/20251223_144403_b9eedf3a.jpg",
+      "created_at": "2025-12-23 11:44:03.942541"
+    },
+    {
+      "id": 20,
+      "recipe_id": 3,
+      "step_index": 4,
+      "image_url": "/uploads/recipes/20251223_144403_bdd69c98.jpg",
+      "created_at": "2025-12-23 11:44:03.942550"
+    }
+  ]
+}
