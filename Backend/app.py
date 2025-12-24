@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 # Определяем пути
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FRONTEND_BUILD_PATH = os.path.join(BASE_DIR, '..', 'Frontend', 'build')
+FRONTEND_BUILD_PATH = os.path.join(BASE_DIR, '..', 'frontend', 'build')
 
 # Проверяем существование папки с фронтендом
 logger.info(f"Checking frontend path: {FRONTEND_BUILD_PATH}")
