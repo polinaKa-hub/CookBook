@@ -11,7 +11,15 @@ app.config.from_object(Config)
 # Инициализация расширений
 from models.db import db
 db.init_app(app)
-CORS(app, origins='*', supports_credentials=True)
+# CORS(app, origins='*', supports_credentials=True)
+
+CORS(app, 
+     origins=Config.CORS_ORIGINS, 
+     supports_credentials=True,
+     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+     allow_headers=["Content-Type", "Authorization", "X-Requested-With"],
+     expose_headers=["Content-Type", "Authorization"])
+
 # Импорт моделей
 from models.user import User, Favorite
 from models.recipe import Recipe, Rating, Comment
@@ -61,6 +69,31 @@ def home():
     </body>
     </html>
     """
+
+@app.route('/health')
+def health_check():
+    try:
+        # Проверка подключения к БД
+        db.session.execute("SELECT 1")
+        
+        # Проверка существования таблиц
+        from sqlalchemy import inspect
+        inspector = inspect(db.engine)
+        tables = inspector.get_table_names()
+        
+        return jsonify({
+            "status": "healthy",
+            "database": "connected",
+            "tables_count": len(tables),
+            "environment": Config.ENVIRONMENT
+        }), 200
+    except Exception as e:
+        return jsonify({
+            "status": "unhealthy", 
+            "database": "disconnected", 
+            "error": str(e),
+            "environment": Config.ENVIRONMENT
+        }), 500
 
 @app.route('/api/test')
 def test_api():
@@ -442,7 +475,37 @@ def serve_avatar(filename):
     return send_from_directory('uploads/avatars', filename)
 
 
+# if __name__ == '__main__':
+#     with app.app_context():
+#         db.create_all()
+#     app.run(debug=True, port=5000)
+
 if __name__ == '__main__':
+    # Печатаем конфигурацию при запуске
+    if hasattr(Config, 'print_config'):
+        Config.print_config()
+    else:
+        print(f"Environment: {Config.ENVIRONMENT}")
+        print(f"Database URL configured: {bool(Config.SQLALCHEMY_DATABASE_URI)}")
+        print(f"CORS Origins: {Config.CORS_ORIGINS}")
+    
     with app.app_context():
-        db.create_all()
-    app.run(debug=True, port=5000)
+        # Проверяем существование таблиц
+        try:
+            from sqlalchemy import inspect
+            inspector = inspect(db.engine)
+            tables = inspector.get_table_names()
+            print(f"Found {len(tables)} tables: {tables}")
+            
+            # Если таблиц нет, создаем их
+            if not tables:
+                print("Creating tables...")
+                db.create_all()
+        except Exception as e:
+            print(f"Error checking tables: {e}")
+    
+    # В production используем другой порт
+    if Config.ENVIRONMENT == 'production':
+        app.run(host='0.0.0.0', port=10000, debug=False)
+    else:
+        app.run(debug=True, port=5000)
