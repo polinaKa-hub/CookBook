@@ -1,0 +1,561 @@
+/* RecipeEditForm.css - Стили как в RecipeForm.css */
+
+/* Контейнер модального окна */
+.modal-overlay-edit {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+/* Контент модального окна */
+.modal-content.recipe-edit-modal {
+  width: 90%;
+  max-width: 1000px;
+  max-height: 90vh;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E0E0E0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Шапка модального окна - обновленная как в RecipeForm */
+.modal-header {
+  background: white;
+  padding: 30px 30px 10px 30px;
+  border-radius: 12px 12px 0 0;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-header h3 i {
+  color: #7DBA4A;
+}
+
+.modal-header .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #777777;
+  padding: 5px 10px;
+}
+
+.modal-header .close-btn:hover {
+  color: #000000;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+/* Тело модального окна */
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 30px 30px;
+}
+
+/* Теперь используем стили из RecipeForm.css для формы */
+.recipe-edit-modal .recipe-form {
+  background: white;
+  border-radius: 12px;
+  padding: 0;
+  margin-bottom: 0;
+  box-shadow: none;
+  border: none;
+}
+
+.recipe-edit-modal .recipe-form h3 {
+  margin: 0 0 25px 0;
+  color: #2c3e50;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.recipe-edit-modal .recipe-form h3 i {
+  color: #7DBA4A;
+}
+
+.recipe-edit-modal .section-line {
+  height: 1px;
+  background-color: #eee;
+  margin: 25px 0;
+}
+
+.recipe-edit-modal .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.recipe-edit-modal .form-input,
+.recipe-edit-modal .form-textarea,
+.recipe-edit-modal .form-select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  font-family: inherit;
+  color: #000000;
+}
+
+.recipe-edit-modal .form-input:focus,
+.recipe-edit-modal .form-textarea:focus,
+.recipe-edit-modal .form-select:focus {
+  outline: none;
+  border-color: #7DBA4A;
+}
+
+.recipe-edit-modal .form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  margin-bottom: 16px;
+}
+
+.recipe-edit-modal .ingredients-block,
+.recipe-edit-modal .steps-block {
+  margin-bottom: 30px;
+}
+
+.recipe-edit-modal .section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.recipe-edit-modal .section-title i {
+  color: #7DBA4A;
+}
+
+.recipe-edit-modal .ingredient-item {
+  display: grid;
+  grid-template-columns: 40px 1fr 120px 100px 40px;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.recipe-edit-modal .step-item {
+  display: grid;
+  grid-template-columns: 40px 1fr 180px 40px;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+.recipe-edit-modal .step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recipe-edit-modal .ingredient-number,
+.recipe-edit-modal .step-number {
+  font-weight: 600;
+  color: #555;
+  font-size: 16px;
+}
+
+.recipe-edit-modal .step-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Стили для загрузки изображений как в RecipeForm */
+.recipe-edit-modal .image-upload {
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #888;
+  background-color: #f9f9f9;
+}
+
+.recipe-edit-modal .image-upload:hover {
+  border-color: #7DBA4A;
+  background-color: #f5f9f0;
+}
+
+.recipe-edit-modal .image-upload i {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #bbb;
+}
+
+.recipe-edit-modal .image-upload span {
+  font-size: 14px;
+}
+
+.recipe-edit-modal .image-preview {
+  max-width: 100%;
+  max-height: 150px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+.recipe-edit-modal .image-input {
+  display: none;
+}
+
+.recipe-edit-modal .remove-image-btn {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background-color 0.3s;
+}
+
+.recipe-edit-modal .remove-image-btn:hover {
+  background-color: #e74c3c;
+}
+
+/* Кнопки как в RecipeForm */
+.recipe-edit-modal .add-btn {
+  background-color: #7DBA4A;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px auto 0;
+  transition: background-color 0.3s;
+}
+
+.recipe-edit-modal .add-btn:hover {
+  background-color: #6AA73F;
+}
+
+.recipe-edit-modal .remove-btn {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  margin-top: 5px;
+}
+
+.recipe-edit-modal .remove-btn:hover {
+  background-color: #e74c3c;
+}
+
+.recipe-edit-modal .remove-ingredient {
+  color: #ff6b6b;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recipe-edit-modal .remove-ingredient:hover {
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+/* Кнопки формы как в RecipeForm */
+.recipe-edit-modal .form-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.recipe-edit-modal .form-buttons .submit-btn {
+  flex: 1;
+  background: #7DBA4A;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.recipe-edit-modal .form-buttons .submit-btn:hover {
+  background: #6AA73F;
+}
+
+.recipe-edit-modal .form-buttons .cancel-btn {
+  flex: 0 0 auto;
+  background-color: #f5f5f5;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 14px 24px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.recipe-edit-modal .form-buttons .cancel-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* Стили для основного изображения как в RecipeForm */
+.recipe-edit-modal .main-image-section {
+  margin-bottom: 30px;
+}
+
+.recipe-edit-modal .main-image-upload-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.recipe-edit-modal .main-image-upload {
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #888;
+  background-color: #f9f9f9;
+  position: relative;
+}
+
+.recipe-edit-modal .main-image-upload:hover {
+  border-color: #7DBA4A;
+  background-color: #f5f9f0;
+}
+
+.recipe-edit-modal .main-image-upload i {
+  font-size: 48px;
+  margin-bottom: 15px;
+  color: #bbb;
+}
+
+.recipe-edit-modal .main-image-upload span {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.recipe-edit-modal .main-image-upload small {
+  font-size: 12px;
+  color: #999;
+}
+
+.recipe-edit-modal .main-image-preview {
+  max-width: 100%;
+  max-height: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-edit-modal .remove-main-image-btn {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background-color 0.3s;
+}
+
+.recipe-edit-modal .remove-main-image-btn:hover {
+  background-color: #e74c3c;
+}
+
+.recipe-edit-modal .main-image-info {
+  padding: 10px 0;
+  color: #666;
+  font-size: 14px;
+  border-top: 1px solid #eee;
+}
+
+.recipe-edit-modal .main-image-info p {
+  margin: 0;
+  font-style: italic;
+}
+
+/* Адаптивность как в RecipeForm */
+@media (max-width: 768px) {
+  .modal-content.recipe-edit-modal {
+    width: 95%;
+    max-height: 95vh;
+  }
+  
+  .modal-header,
+  .modal-body {
+    padding: 15px 20px;
+  }
+  
+  .recipe-edit-modal .form-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .recipe-edit-modal .ingredient-item {
+    grid-template-columns: 30px 1fr;
+    grid-template-rows: auto auto;
+    gap: 8px;
+  }
+  
+  .recipe-edit-modal .ingredient-number {
+    grid-row: 1 / span 2;
+  }
+  
+  .recipe-edit-modal .step-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .recipe-edit-modal .step-number {
+    margin-bottom: 5px;
+  }
+  
+  .recipe-edit-modal .image-upload {
+    height: 140px;
+    padding: 15px;
+  }
+  
+  .recipe-edit-modal .main-image-upload {
+    height: 180px;
+    padding: 20px;
+  }
+  
+  .recipe-edit-modal .main-image-upload i {
+    font-size: 36px;
+  }
+  
+  .recipe-edit-modal .main-image-upload span {
+    font-size: 14px;
+  }
+  
+  .recipe-edit-modal .form-buttons {
+    flex-direction: column;
+  }
+  
+  .recipe-edit-modal .form-buttons .submit-btn,
+  .recipe-edit-modal .form-buttons .cancel-btn {
+    width: 100%;
+  }
+}
+
+/* Стили для ошибок валидации */
+.form-group {
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.error {
+  border-color: #ff3860 !important;
+  background-color: #fff5f5 !important;
+}
+
+.error-message {
+  color: #ff3860;
+  font-size: 12px;
+  margin-top: 4px;
+  padding-left: 4px;
+  display: block;
+}
+
+.success-message {
+  color: #23d160;
+  font-size: 12px;
+  margin-top: 4px;
+  padding-left: 4px;
+  display: block;
+}
+
+/* Обновленные стили для полей ввода */
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #3273dc;
+  box-shadow: 0 0 0 2px rgba(50, 115, 220, 0.1);
+}
+
+/* Стили для ингредиентов и шагов с ошибками */
+.ingredient-item .form-group,
+.step-content .form-group {
+  flex: 1;
+  margin-bottom: 8px;
+}
+
+/* Кнопка отправки при наличии ошибок */
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
