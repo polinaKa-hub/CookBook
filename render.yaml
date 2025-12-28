@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: cookbook-backend
+    env: python
+    region: frankfurt  # или oregon/singapore
+    buildCommand: pip install -r Backend/requirements.txt
+    startCommand: cd Backend && gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: cookbook-db
+          property: connectionString
+      - key: IMGBB_API_KEY
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: ENVIRONMENT
+        value: production
+
+databases:
+  - name: cookbook-db
+    plan: free
+    region: frankfurt

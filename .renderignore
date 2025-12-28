@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+instance/
+uploads/
+venv/
+*.db
+.env
+*.log
+node_modules/
+.git/
+.gitignore
+README.md
