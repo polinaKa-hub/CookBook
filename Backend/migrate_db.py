@@ -17,99 +17,34 @@ def get_sqlite_connection():
     return sqlite3.connect(sqlite_path)
 
 def get_postgres_connection():
-    """Подключение к PostgreSQL с явными параметрами"""
-    # Пробуем разные варианты подключения
-    
-    # Вариант 1: Прямые параметры (самый надежный)
+    """Подключение к PostgreSQL на Render"""
     try:
-        print("Пробую подключиться к PostgreSQL с параметрами...")
-        conn = psycopg2.connect(
-            host="localhost",
-            database="cookbook",
-            user="cookbook_user",
-            password="your_password",  # ЗАМЕНИТЕ НА СВОЙ ПАРОЛЬ!
-            port="5432"
-        )
-        print("Успешно подключились с параметрами")
-        return conn
-    except Exception as e:
-        print(f"Ошибка при подключении с параметрами: {e}")
-    
-    # Вариант 2: Через переменную окружения (проверяем кодировку)
-    try:
-        if 'DATABASE_URL' in os.environ:
-            db_url = os.environ['DATABASE_URL']
-            print(f"Пробую DATABASE_URL: {db_url[:50]}...")  # Выводим только начало
-            
-            # Убедимся, что это строка в правильной кодировке
-            if isinstance(db_url, bytes):
-                db_url = db_url.decode('utf-8')
-            
-            # Исправляем common issues
-            if db_url.startswith('"'):
-                db_url = db_url.strip('"')
-            if db_url.startswith("'"):
-                db_url = db_url.strip("'")
-            db_url = db_url.strip()
-            
-            conn = psycopg2.connect(db_url)
-            print("Успешно подключились через DATABASE_URL")
-            return conn
-    except Exception as e:
-        print(f"Ошибка при подключении через DATABASE_URL: {e}")
-    
-    # Вариант 3: Пробуем как пользователь postgres
-    try:
-        print("Пробую подключиться как пользователь postgres...")
-        conn = psycopg2.connect(
-            host="localhost",
-            database="postgres",
-            user="postgres",
-            password="",  # Пароль, который вы установили при инсталляции
-            port="5432"
-        )
+        print("Пробую подключиться к PostgreSQL на Render...")
         
-        # Создаем базу данных если нужно
-        conn.autocommit = True
-        cursor = conn.cursor()
+        # Получаем URL из переменной окружения Render
+        db_url = os.environ.get('DATABASE_URL')
         
-        # Проверяем существование базы данных
-        cursor.execute("SELECT 1 FROM pg_database WHERE datname = 'cookbook'")
-        if not cursor.fetchone():
-            print("База данных 'cookbook' не существует, создаю...")
-            cursor.execute("CREATE DATABASE cookbook")
+        if not db_url:
+            print("Переменная DATABASE_URL не установлена")
+            print("Текущие переменные окружения:", dict(os.environ))
+            sys.exit(1)
         
-        # Проверяем существование пользователя
-        cursor.execute("SELECT 1 FROM pg_roles WHERE rolname = 'cookbook_user'")
-        if not cursor.fetchone():
-            print("Пользователь 'cookbook_user' не существует, создаю...")
-            cursor.execute("CREATE USER cookbook_user WITH PASSWORD 'your_password'")
-            cursor.execute("GRANT ALL PRIVILEGES ON DATABASE cookbook TO cookbook_user")
+        # Исправляем URL если нужно (Render иногда добавляет postgres://)
+        if db_url.startswith('postgres://'):
+            db_url = db_url.replace('postgres://', 'postgresql://', 1)
         
-        conn.close()
+        print(f"Подключаюсь по URL: {db_url[:50]}...")  # Логируем без пароля
         
-        # Подключаемся к новой базе
-        conn = psycopg2.connect(
-            host="localhost",
-            database="cookbook",
-            user="cookbook_user",
-            password="your_password",
-            port="5432"
-        )
-        print("Успешно подключились как postgres")
+        conn = psycopg2.connect(db_url)
+        print("✓ Успешно подключились к PostgreSQL на Render")
         return conn
         
     except Exception as e:
-        print(f"Ошибка при подключении как postgres: {e}")
-    
-    print("\n" + "="*60)
-    print("Не удалось подключиться к PostgreSQL!")
-    print("Проверьте:")
-    print("1. Запущена ли служба PostgreSQL")
-    print("2. Пароль пользователя cookbook_user")
-    print("3. Существует ли база данных 'cookbook'")
-    print("="*60)
-    sys.exit(1)
+        print(f"✗ Ошибка подключения: {e}")
+        print("\nПроверьте:")
+        print("1. На Render Dashboard → Database → Connection String")
+        print("2. Правильность DATABASE_URL в Environment Variables")
+        sys.exit(1)
 
 def create_postgres_tables(pg_cursor):
     """Создание таблиц в PostgreSQL"""

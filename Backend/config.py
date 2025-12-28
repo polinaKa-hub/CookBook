@@ -5,7 +5,8 @@ load_dotenv()
 
 class Config:
     # PostgreSQL конфигурация
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL') or \
+        "postgresql://cookbook_60x8_user:ANa74rHsmxSSHkzCIbdtNH7IXG3RjSgg@dpg-d58pu7hr0fns73fcseg0-a.frankfurt-postgres.render.com/cookbook_60x8"
     
     # Исправляем postgres:// на postgresql:// (нужно для некоторых версий SQLAlchemy)
     if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith('postgres://'):
