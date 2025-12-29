@@ -49,7 +49,7 @@ class AuthController:
             'user': user.to_dict(),
             'session_id': session_id
         })
-        response.set_cookie('session_id', session_id, httponly=True, samesite='Lax')
+        response.set_cookie('session_id', session_id, httponly=True, samesite='None', secure=True, domain='.onrender.com' )
         return response
     
     def logout(self):
