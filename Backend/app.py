@@ -100,6 +100,41 @@ def test_db_connection():
             "error_type": type(e).__name__
         }), 500
 
+import psycopg2
+
+@app.route('/api/test-psycopg2')
+def test_psycopg2():
+    """Тест подключения через psycopg2"""
+    try:
+        from config import Config
+        
+        db_url = Config.SQLALCHEMY_DATABASE_URI
+        print(f"Connecting to: {db_url[:50]}...")
+        
+        conn = psycopg2.connect(db_url)
+        cursor = conn.cursor()
+        
+        # Тестовый запрос
+        cursor.execute("SELECT version(), current_database(), current_user")
+        result = cursor.fetchone()
+        
+        cursor.close()
+        conn.close()
+        
+        return jsonify({
+            "status": "success",
+            "postgres_version": result[0],
+            "database": result[1],
+            "user": result[2]
+        })
+        
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "error": str(e),
+            "config_database_url": Config.SQLALCHEMY_DATABASE_URI[:50] + "..." if Config.SQLALCHEMY_DATABASE_URI else "None"
+        }), 500
+
 @app.route('/health')
 def health_check():
     try:
