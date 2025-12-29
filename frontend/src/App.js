@@ -245,7 +245,7 @@ function App() {
   const fetchRecipes = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${API_URL}/api/recipes`);
+      const response = await fetch("https://cookbook-backend-kupo.onrender.com/api/recipes");
       if (!response.ok) throw new Error('Ошибка загрузки рецептов');
       const data = await response.json();
       setRecipes(data);
