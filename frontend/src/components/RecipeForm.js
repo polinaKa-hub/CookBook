@@ -428,7 +428,7 @@ const RecipeForm = ({ onAddRecipe }) => {
 
     try {
       // Используем правильный endpoint
-      const response = await fetch('http://localhost:5000/api/recipes/with-steps', {
+      const response = await fetch('https://cookbook-backend-kupo.onrender.com/api/recipes/with-steps', {
         method: 'POST',
         body: formDataToSend,
         credentials: 'include'  // Для cookies с session_id

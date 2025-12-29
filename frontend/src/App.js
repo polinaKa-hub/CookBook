@@ -9,7 +9,7 @@ import RecipeDetail from './components/RecipeDetail';
 import UserProfile from './components/UserProfile';
 import RecipeEditForm from './components/RecipeEditForm';
 import Swal from 'sweetalert2';
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_URL = process.env.REACT_APP_API_URL || 'https://cookbook-backend-kupo.onrender.com';
 
 
 function App() {
@@ -92,7 +92,7 @@ function App() {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/me', {
+      const response = await fetch('https://cookbook-backend-kupo.onrender.com/api/auth/me', {
         credentials: 'include'
       });
       const data = await response.json();
@@ -148,7 +148,7 @@ function App() {
 
   const handleLogin = async (userData) => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('https://cookbook-backend-kupo.onrender.com/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -229,7 +229,7 @@ function App() {
 
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:5000/api/auth/logout', {
+      await fetch('https://cookbook-backend-kupo.onrender.com/api/auth/logout', {
         method: 'POST',
         credentials: 'include'
       });
@@ -276,7 +276,7 @@ function App() {
 
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/recipes/my', {
+      const response = await fetch('https://cookbook-backend-kupo.onrender.com/api/recipes/my', {
         credentials: 'include'
       });
       
@@ -326,7 +326,7 @@ function App() {
 
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/auth/favorites', {
+      const response = await fetch('https://cookbook-backend-kupo.onrender.com/api/auth/favorites', {
         credentials: 'include'
       });
       
@@ -366,7 +366,7 @@ function App() {
       // Загружаем информацию о каждом рецепте
       const recipesPromises = recipeIds.map(async (id) => {
         try {
-          const recipeResponse = await fetch(`http://localhost:5000/api/recipes/${id}`);
+          const recipeResponse = await fetch(`https://cookbook-backend-kupo.onrender.com/api/recipes/${id}`);
           if (recipeResponse.ok) {
             return await recipeResponse.json();
           } else {
@@ -409,7 +409,7 @@ function App() {
 
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/recipes/search?q=${encodeURIComponent(query)}`);
+      const response = await fetch(`https://cookbook-backend-kupo.onrender.com/api/recipes/search?q=${encodeURIComponent(query)}`);
       const data = await response.json();
       
       if (Array.isArray(data)) {
@@ -488,7 +488,7 @@ function App() {
 
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/recipes/filter?${params}`);
+      const response = await fetch(`https://cookbook-backend-kupo.onrender.com/api/recipes/filter?${params}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -605,7 +605,7 @@ function App() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/favorites/remove', {
+      const response = await fetch('https://cookbook-backend-kupo.onrender.com/api/auth/favorites/remove', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -661,7 +661,7 @@ function App() {
     console.log('Updating recipe:', recipeId);
     
     try {
-      const response = await fetch(`http://localhost:5000/api/recipes/${recipeId}/update-with-steps`, {
+      const response = await fetch(`https://cookbook-backend-kupo.onrender.com/api/recipes/${recipeId}/update-with-steps`, {
         method: 'PATCH',
         body: formData,
         credentials: 'include'
@@ -705,7 +705,7 @@ function App() {
   const handleDeleteRecipe = async (recipeId) => {
 
     try {
-      const response = await fetch(`http://localhost:5000/api/recipes/${recipeId}`, {
+      const response = await fetch(`https://cookbook-backend-kupo.onrender.com/api/recipes/${recipeId}`, {
         method: 'DELETE',
         credentials: 'include'
       });
@@ -728,7 +728,7 @@ function App() {
 
   const viewRecipe = async (recipeId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/recipes/${recipeId}`);
+      const response = await fetch(`https://cookbook-backend-kupo.onrender.com/api/recipes/${recipeId}`);
       const recipe = await response.json();
       setSelectedRecipe(recipe);
       setView('detail');
@@ -768,7 +768,7 @@ function App() {
     if (!currentUser) return false;
     
     try {
-      const response = await fetch('http://localhost:5000/api/auth/favorites', {
+      const response = await fetch('https://cookbook-backend-kupo.onrender.com/api/auth/favorites', {
         credentials: 'include'
       });
       
@@ -823,7 +823,7 @@ function App() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/favorites', {
+      const response = await fetch('https://cookbook-backend-kupo.onrender.com/api/auth/favorites', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1084,7 +1084,7 @@ function App() {
                   onEdit={(recipe) => {
                     const loadRecipeDetails = async () => {
                       try {
-                        const response = await fetch(`http://localhost:5000/api/recipes/${recipe.id}`);
+                        const response = await fetch(`https://cookbook-backend-kupo.onrender.com/api/recipes/${recipe.id}`);
                         const fullRecipe = await response.json();
                         setEditingRecipe(fullRecipe);
                         setShowEditModal(true);

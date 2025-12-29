@@ -106,7 +106,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
   const fetchUserProfile = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/users/${profileUserId}`, {
+      const response = await fetch(`https://cookbook-backend-kupo.onrender.com/api/users/${profileUserId}`, {
         credentials: 'include'
       });
       
@@ -122,7 +122,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
           confirmPassword: ''
         });
         if (user.avatar_url) {
-          const fullAvatarUrl = `http://localhost:5000${user.avatar_url}`;
+          const fullAvatarUrl = `https://cookbook-backend-kupo.onrender.com${user.avatar_url}`;
           setAvatarPreview(fullAvatarUrl);
         }
       } else {
@@ -181,7 +181,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
 
   const fetchUserRecipes = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/recipes/user/${profileUserId}`);
+      const response = await fetch(`https://cookbook-backend-kupo.onrender.com/api/recipes/user/${profileUserId}`);
       if (response.ok) {
         const recipes = await response.json();
         setUserRecipes(recipes);
@@ -193,7 +193,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
 
   const fetchFavoriteRecipes = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/favorite-recipes', {
+      const response = await fetch('https://cookbook-backend-kupo.onrender.com/api/auth/favorite-recipes', {
         credentials: 'include'
       });
       if (response.ok) {
@@ -241,7 +241,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
         formData.append('new_password', editForm.newPassword);
       }
       
-      const response = await fetch(`http://localhost:5000/api/users/${profileUserId}`, {
+      const response = await fetch(`https://cookbook-backend-kupo.onrender.com/api/users/${profileUserId}`, {
         method: 'PATCH',
         body: formData,
         credentials: 'include'
@@ -260,7 +260,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
         
         // Обновляем превью аватара
         if (updatedUser.avatar_url) {
-          const fullAvatarUrl = `http://localhost:5000${updatedUser.avatar_url}`;
+          const fullAvatarUrl = `https://cookbook-backend-kupo.onrender.com${updatedUser.avatar_url}`;
           setAvatarPreview(fullAvatarUrl);
         }
         
@@ -406,7 +406,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
         );
       }
       
-      const response = await fetch(`http://localhost:5000/api/users/${profileUserId}`, {
+      const response = await fetch(`https://cookbook-backend-kupo.onrender.com/api/users/${profileUserId}`, {
         method: 'PATCH',
         body: formData,
         credentials: 'include'
@@ -419,7 +419,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
         console.log('Обновленный пользователь:', updatedUser);
         
         if (updatedUser.avatar_url) {
-          const fullAvatarUrl = `http://localhost:5000${updatedUser.avatar_url}`;
+          const fullAvatarUrl = `https://cookbook-backend-kupo.onrender.com${updatedUser.avatar_url}`;
           console.log('Новый URL аватара:', fullAvatarUrl);
           setAvatarPreview(fullAvatarUrl);
         }
@@ -486,7 +486,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
           <div className="profile-avatar-section">
             <div className="avatar-container">
               <img 
-                src={`http://localhost:5000${userData.avatar_url} `} 
+                src={`https://cookbook-backend-kupo.onrender.com${userData.avatar_url} `} 
                 alt={userData?.username}
                 className="profile-avatar"
               />
@@ -746,7 +746,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
                       <div className="recipe-image-container">
                         {recipe.image_url ? (
                           <img 
-                            src={`http://localhost:5000${recipe.image_url}`} 
+                            src={`https://cookbook-backend-kupo.onrender.com${recipe.image_url}`} 
                             alt={recipe.title}
                             onError={(e) => {
                               e.target.onerror = null;
@@ -805,7 +805,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
                       <div className="recipe-image-container">
                         {recipe.image_url ? (
                           <img 
-                            src={`http://localhost:5000${recipe.image_url}`} 
+                            src={`https://cookbook-backend-kupo.onrender.com${recipe.image_url}`} 
                             alt={recipe.title}
                             onError={(e) => {
                               e.target.onerror = null;

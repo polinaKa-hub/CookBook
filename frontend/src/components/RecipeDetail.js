@@ -18,7 +18,7 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
     const checkFavoriteStatus = async () => {
       if (currentUser && recipe?.id) {
         try {
-          const response = await fetch('http://localhost:5000/api/auth/favorites', {
+          const response = await fetch('https://cookbook-backend-kupo.onrender.com/api/auth/favorites', {
             credentials: 'include'
           });
           
@@ -181,7 +181,7 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
   const fetchComments = async () => {
     try {
       console.log('Fetching comments for recipe:', recipe.id);
-      const response = await fetch(`http://localhost:5000/api/recipes/${recipe.id}/comments`, {
+      const response = await fetch(`https://cookbook-backend-kupo.onrender.com/api/recipes/${recipe.id}/comments`, {
         credentials: 'include'
       });
       
@@ -247,7 +247,7 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
       setNewComment('');
       
       // Отправляем на сервер
-      const response = await fetch(`http://localhost:5000/api/recipes/${recipe.id}/comments`, {
+      const response = await fetch(`https://cookbook-backend-kupo.onrender.com/api/recipes/${recipe.id}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -291,7 +291,7 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
   // Функции для навигации
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:5000/api/auth/logout', {
+      await fetch('https://cookbook-backend-kupo.onrender.com/api/auth/logout', {
         method: 'POST',
         credentials: 'include'
       });
@@ -471,7 +471,7 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
       <div className="recipe-detail-image-section">
         <div className="recipe-detail-image">
           {recipe?.image_url ? (
-            <img src={`http://localhost:5000${recipe.image_url}`} alt={recipe.title} />
+            <img src={`https://cookbook-backend-kupo.onrender.com${recipe.image_url}`} alt={recipe.title} />
           ) : (
             <div className="recipe-detail-image-placeholder">
               <span>📷</span>
@@ -576,7 +576,7 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
                   Array.isArray(recipe.step_images) && 
                   recipe.step_images[index] && (
                   <img 
-                        src={`http://localhost:5000${recipe.step_images[index].image_url}`}
+                        src={`https://cookbook-backend-kupo.onrender.com${recipe.step_images[index].image_url}`}
                         alt={`Шаг ${index + 1}`} 
                         onError={(e) => {
                           console.error(`Failed to load image: ${recipe.step_images[index].image_url}`);

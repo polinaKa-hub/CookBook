@@ -124,7 +124,7 @@ const RecipeCard = ({
     <div className="recipe-card" onClick={() => onView(recipe.id)}>
       <div className="recipe-image">
         {recipe.image_url ? (
-          <img src={`http://localhost:5000${recipe.image_url}`} alt={recipe.title} />
+          <img src={`https://cookbook-backend-kupo.onrender.com${recipe.image_url}`} alt={recipe.title} />
         ) : (
           <div className="image-placeholder">
             <span>📷</span>

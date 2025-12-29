@@ -12,7 +12,7 @@ const FavoritesPage = ({ currentUser, onBack }) => {
 
   const fetchFavorites = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/favorites', {
+      const response = await fetch('https://cookbook-backend-kupo.onrender.com/api/auth/favorites', {
         credentials: 'include'
       });
       
@@ -21,7 +21,7 @@ const FavoritesPage = ({ currentUser, onBack }) => {
         // data.favorites содержит ID рецептов
         // Нужно загрузить информацию о каждом рецепте
         const recipesPromises = data.favorites.map(id =>
-          fetch(`http://localhost:5000/api/recipes/${id}`).then(r => r.json())
+          fetch(`https://cookbook-backend-kupo.onrender.com/api/recipes/${id}`).then(r => r.json())
         );
         
         const recipes = await Promise.all(recipesPromises);
@@ -36,7 +36,7 @@ const FavoritesPage = ({ currentUser, onBack }) => {
 
   const handleRemoveFavorite = async (recipeId) => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/favorites/remove', {
+      const response = await fetch('https://cookbook-backend-kupo.onrender.com/api/auth/favorites/remove', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
