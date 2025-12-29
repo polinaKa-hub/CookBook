@@ -9,6 +9,7 @@ import RecipeDetail from './components/RecipeDetail';
 import UserProfile from './components/UserProfile';
 import RecipeEditForm from './components/RecipeEditForm';
 import Swal from 'sweetalert2';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 
 function App() {
@@ -105,7 +106,7 @@ function App() {
 
   const handleRegister = async (userData) => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch(`${API_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -244,7 +245,7 @@ function App() {
   const fetchRecipes = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/recipes');
+      const response = await fetch(`${API_URL}/api/recipes`);
       if (!response.ok) throw new Error('Ошибка загрузки рецептов');
       const data = await response.json();
       setRecipes(data);
