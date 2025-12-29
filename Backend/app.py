@@ -70,11 +70,44 @@ def home():
     </html>
     """
 
+@app.route('/api/test-db')
+def test_db_connection():
+    """Тест подключения к БД через SQLAlchemy"""
+    try:
+        from sqlalchemy import text
+        
+        # Попробуем выполнить простой запрос
+        result = db.session.execute(text("SELECT current_database(), current_user"))
+        db_info = result.fetchone()
+        
+        # Проверим таблицы
+        from sqlalchemy import inspect
+        inspector = inspect(db.engine)
+        tables = inspector.get_table_names()
+        
+        return jsonify({
+            "status": "success",
+            "database": db_info[0] if db_info else "unknown",
+            "user": db_info[1] if db_info else "unknown",
+            "tables": tables,
+            "tables_count": len(tables)
+        })
+        
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "error": str(e),
+            "error_type": type(e).__name__
+        }), 500
+
 @app.route('/health')
 def health_check():
     try:
+        # Для SQLAlchemy 2.0+ нужно использовать text()
+        from sqlalchemy import text
+        
         # Проверка подключения к БД
-        db.session.execute("SELECT 1")
+        db.session.execute(text("SELECT 1"))
         
         # Проверка существования таблиц
         from sqlalchemy import inspect
@@ -85,6 +118,7 @@ def health_check():
             "status": "healthy",
             "database": "connected",
             "tables_count": len(tables),
+            "tables": tables,
             "environment": Config.ENVIRONMENT
         }), 200
     except Exception as e:
