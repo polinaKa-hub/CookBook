@@ -2,9 +2,11 @@ services:
   - type: web
     name: cookbook-backend
     env: python
-    region: frankfurt  # или oregon/singapore
-    buildCommand: pip install -r Backend/requirements.txt
-    startCommand: cd Backend && gunicorn app:app --bind 0.0.0.0:$PORT
+    region: frankfurt
+    buildCommand: |
+      cd Backend && pip install -r requirements.txt
+      python -c "from app import db, app; app.app_context().push(); db.create_all()"
+    startCommand: cd Backend && gunicorn app:app --bind 0.0.0.0:$PORT --workers=2 --threads=4
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
@@ -19,6 +21,10 @@ services:
       - key: JWT_SECRET_KEY
         generateValue: true
       - key: ENVIRONMENT
+        value: production
+      - key: FLASK_APP
+        value: app.py
+      - key: FLASK_ENV
         value: production
 
 databases:

@@ -49,7 +49,15 @@ class AuthController:
             'user': user.to_dict(),
             'session_id': session_id
         })
-        response.set_cookie('session_id', session_id, httponly=True, samesite='None', secure=True, domain='.onrender.com' )
+        response.set_cookie(
+            'session_id', 
+            session_id,
+            httponly=True,
+            secure=True,  # ВАЖНО для HTTPS
+            samesite='None',  # ВАЖНО для кросс-доменных запросов
+            max_age=86400,  # 24 часа
+            domain='.onrender.com'  # Используем общий домен Render
+        )
         return response
     
     def logout(self):
