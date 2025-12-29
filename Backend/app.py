@@ -7,29 +7,20 @@ import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.config.update(
-    SESSION_COOKIE_SECURE=True,
-    SESSION_COOKIE_HTTPONLY=True,
-    SESSION_COOKIE_SAMESITE='None',
-    REMEMBER_COOKIE_SECURE=True,
-    REMEMBER_COOKIE_HTTPONLY=True,
-    REMEMBER_COOKIE_SAMESITE='None'
-)
+
 
 # Инициализация расширений
 from models.db import db
 db.init_app(app)
 # CORS(app, origins='*', supports_credentials=True)
+
 CORS(app, 
-     supports_credentials=True,  # ВАЖНО: для кросс-доменных куки
-     origins=[
-        'http://localhost:3000',
-        'https://cookbook-frontend-kupo.onrender.com',  # Замените на ваш реальный URL
-        'http://cookbook-frontend-kupo.onrender.com'
-     ],
+     origins='*',  # Временно разрешаем всем
+     supports_credentials=True,  # Это ОБЯЗАТЕЛЬНО
      allow_headers=["Content-Type", "Authorization", "X-Requested-With"],
-     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-     expose_headers=["Set-Cookie"])
+     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"]
+)
+
 # CORS(app, 
 #      origins=Config.CORS_ORIGINS, 
 #      supports_credentials=True,
