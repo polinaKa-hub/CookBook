@@ -102,6 +102,34 @@ def test_db_connection():
 
 import psycopg2
 
+@app.route('/api/test-endpoints')
+def test_endpoints():
+    """Проверка всех endpoint'ов"""
+    endpoints = [
+        "/api/recipes",
+        "/api/auth/register",
+        "/api/auth/login",
+        "/health",
+        "/api/test-db"
+    ]
+    
+    results = {}
+    import requests
+    
+    for endpoint in endpoints:
+        try:
+            # Внутри приложения используем test_client
+            with app.test_client() as client:
+                response = client.get(endpoint)
+                results[endpoint] = {
+                    "status": response.status_code,
+                    "exists": response.status_code != 404
+                }
+        except Exception as e:
+            results[endpoint] = {"error": str(e)}
+    
+    return jsonify(results)
+
 @app.route('/api/test-psycopg2')
 def test_psycopg2():
     """Тест подключения через psycopg2"""
