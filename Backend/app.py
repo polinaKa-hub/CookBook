@@ -571,6 +571,17 @@ def get_favorite_recipes():
 def serve_avatar(filename):
     return send_from_directory('uploads/avatars', filename)
 
+@app.route('/api/auth/favorites', methods=['GET'])
+def get_favorites():
+    """ВРЕМЕННО: вернуть пустой список"""
+    return jsonify({'favorites': []})
+
+@app.route('/api/recipes/my', methods=['GET'])
+def get_my_recipes():
+    """ВРЕМЕННО: вернуть все рецепты"""
+    from models.recipe import Recipe
+    recipes = Recipe.query.order_by(Recipe.created_at.desc()).limit(10).all()
+    return jsonify([recipe.to_dict() for recipe in recipes])
 
 # if __name__ == '__main__':
 #     with app.app_context():
