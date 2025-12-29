@@ -7,7 +7,12 @@ import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
-
+app.config.update(
+    SESSION_COOKIE_SECURE=True,      # Только для HTTPS
+    SESSION_COOKIE_HTTPONLY=True,    # Защита от XSS
+    SESSION_COOKIE_SAMESITE='None',  # Для кросс-доменных запросов
+    PERMANENT_SESSION_LIFETIME=86400 # Время жизни сессии в секундах (24 часа)
+)
 
 # Инициализация расширений
 from models.db import db
