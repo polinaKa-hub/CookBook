@@ -125,8 +125,8 @@ const RecipeCard = ({
       <div className="recipe-image">
         {recipe.image_url ? (
           // <img src={`https://cookbook-backend-kupo.onrender.com${recipe.image_url}`} alt={recipe.title} />
-          <img src={recipe.image_url.startsWith('http') ? recipe.image_url : `https://cookbook-backend-kupo.onrender.com${recipe.image_url}`} alt={recipe.title} />
-          // <img src={recipe.image_url} alt={recipe.title} />
+          //<img src={recipe.image_url.startsWith('http') ? recipe.image_url : `https://cookbook-backend-kupo.onrender.com${recipe.image_url}`} alt={recipe.title} />
+          <img src={recipe.image_url} alt={recipe.title} />
         ) : (
           <div className="image-placeholder">
             <span>📷</span>
