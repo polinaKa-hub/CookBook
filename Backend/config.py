@@ -32,6 +32,6 @@ class Config:
     
     # CORS настройки
     if ENVIRONMENT == 'production':
-        CORS_ORIGINS = ['https://cookbook-frontend.onrender.com']
+        CORS_ORIGINS = ['https://cookbook-backend-kupo.onrender.com']
     else:
         CORS_ORIGINS = ['http://localhost:3000', 'http://localhost:5000']

@@ -571,13 +571,15 @@ def get_favorite_recipes():
 def serve_avatar(filename):
     return send_from_directory('uploads/avatars', filename)
 
-@app.route('/api/auth/favorites', methods=['GET'])
-def get_favorites():
+
+# Используйте другое имя:
+@app.route('/api/auth/favorites-test', methods=['GET'])
+def get_favorites_test():  # ← НОВОЕ ИМЯ
     """ВРЕМЕННО: вернуть пустой список"""
     return jsonify({'favorites': []})
 
-@app.route('/api/recipes/my', methods=['GET'])
-def get_my_recipes():
+@app.route('/api/recipes/my-test', methods=['GET'])
+def get_my_recipes_test():  # ← НОВОЕ ИМЯ
     """ВРЕМЕННО: вернуть все рецепты"""
     from models.recipe import Recipe
     recipes = Recipe.query.order_by(Recipe.created_at.desc()).limit(10).all()
