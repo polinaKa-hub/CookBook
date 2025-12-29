@@ -104,7 +104,7 @@ class Recipe(db.Model):
             'favorites_count': self.favorites_count,  # Добавляем счетчик избранного
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None,
-            'step_images': self.step_images_list 
+            'step_images': []
         }
 
 class Rating(db.Model):
