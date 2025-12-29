@@ -11,14 +11,14 @@ app.config.from_object(Config)
 # Инициализация расширений
 from models.db import db
 db.init_app(app)
-# CORS(app, origins='*', supports_credentials=True)
+CORS(app, origins='*', supports_credentials=True)
 
-CORS(app, 
-     origins=Config.CORS_ORIGINS, 
-     supports_credentials=True,
-     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-     allow_headers=["Content-Type", "Authorization", "X-Requested-With"],
-     expose_headers=["Content-Type", "Authorization"])
+# CORS(app, 
+#      origins=Config.CORS_ORIGINS, 
+#      supports_credentials=True,
+#      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+#      allow_headers=["Content-Type", "Authorization", "X-Requested-With"],
+#      expose_headers=["Content-Type", "Authorization"])
 
 # Импорт моделей
 from models.user import User, Favorite
