@@ -607,6 +607,12 @@ if __name__ == '__main__':
     # Печатаем конфигурацию при запуске
     if hasattr(Config, 'print_config'):
         Config.print_config()
+        print(f"Environment: {Config.ENVIRONMENT}")
+        print(f"Database URL: {Config.SQLALCHEMY_DATABASE_URI[:50]}...")
+        print(f"CORS Origins: {Config.CORS_ORIGINS}")
+        print(f"Use ImgBB: {Config.USE_IMGBB}")
+        print(f"ImgBB API Key length: {len(Config.IMGBB_API_KEY) if Config.IMGBB_API_KEY else 0}")
+            
     else:
         print(f"Environment: {Config.ENVIRONMENT}")
         print(f"Database URL configured: {bool(Config.SQLALCHEMY_DATABASE_URI)}")

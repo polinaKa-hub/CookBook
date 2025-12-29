@@ -15,7 +15,8 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # ImgBB конфигурация
-    IMGBB_API_KEY = os.getenv('IMGBB_API_KEY', '')
+    IMGBB_API_KEY = os.getenv('IMGBB_API_KEY') or '0a3069d71b6782d74ef6e2d6be371d9b'
+    USE_IMGBB = bool(IMGBB_API_KEY)  # Будет True если ключ не пустой
     # Если есть API ключ - используем ImgBB, иначе локальное хранилище
     USE_IMGBB = bool(IMGBB_API_KEY)  # Автоматически True если ключ есть
     
