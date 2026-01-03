@@ -630,7 +630,7 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
           )}
         </div>
 
-        {currentUser && (
+        {/* {currentUser && ( */}
           <div className="recipe-detail-add-comment">
             <input
               type="text"
@@ -649,7 +649,7 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
               Добавить комментарий
             </button>
           </div>
-        )}
+        {/* )} */}
       </div>
       </div>
 
