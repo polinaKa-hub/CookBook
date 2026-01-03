@@ -51,6 +51,7 @@ body {
 .auth-btn {
   padding: 8px 20px;
   border: 2px solid #7DBA4A;
+  border-radius: 8px;
   background: transparent;
   color: #000000;
   cursor: pointer;

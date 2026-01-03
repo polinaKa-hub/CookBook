@@ -1,7 +1,7 @@
 .recipe-card {
   display: flex;
   background: white;
-  border-radius: 3px;
+  border-radius: 8px;
   margin-bottom: 24px;
   border: 1px solid #f3f3f3;
   overflow: hidden;
@@ -15,7 +15,7 @@
 
 .recipe-image {
   width: 250px;
-  height: 250px;
+  /* height: 250px; */
   background: #f5f5f5;
   display: flex;
   align-items: center;
@@ -67,9 +67,15 @@
   margin: 0 0 4px 0;
 }
 
+.recipe-title:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 .recipe-author {
   color: #777777;
   font-size: 14px;
+}
+.recipe-author:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .recipe-meta {
@@ -124,6 +130,7 @@
 
 .add-to-book-btn {
   background: #ffffff;
+  border-radius: 5px;
   color: rgb(0, 0, 0);
   border: 1px solid #d7d7d7;
   padding: 10px 20px;
