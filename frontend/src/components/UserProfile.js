@@ -486,10 +486,11 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
           <div className="profile-avatar-section">
             <div className="avatar-container">
               <img 
-                src={`https://cookbook-backend-kupo.onrender.com${userData.avatar_url} `} 
+                src={userData.avatar_url} 
                 alt={userData?.username}
                 className="profile-avatar"
               />
+              {/* <img src={recipe.image_url} alt={recipe.title} /> */}
               {isOwnProfile && !isEditing && (
                 <label className="avatar-upload">
                   <input 
@@ -746,7 +747,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
                       <div className="recipe-image-container">
                         {recipe.image_url ? (
                           <img 
-                            src={`https://cookbook-backend-kupo.onrender.com${recipe.image_url}`} 
+                            src={recipe.image_url} 
                             alt={recipe.title}
                             onError={(e) => {
                               e.target.onerror = null;
@@ -805,7 +806,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
                       <div className="recipe-image-container">
                         {recipe.image_url ? (
                           <img 
-                            src={`https://cookbook-backend-kupo.onrender.com${recipe.image_url}`} 
+                            src={recipe.image_url} 
                             alt={recipe.title}
                             onError={(e) => {
                               e.target.onerror = null;

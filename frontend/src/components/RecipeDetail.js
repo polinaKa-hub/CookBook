@@ -471,7 +471,9 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
       <div className="recipe-detail-image-section">
         <div className="recipe-detail-image">
           {recipe?.image_url ? (
-            <img src={`https://cookbook-backend-kupo.onrender.com${recipe.image_url}`} alt={recipe.title} />
+            <img src={recipe.image_url} alt={recipe.title} />
+            // <img src={`https://cookbook-backend-kupo.onrender.com${recipe.image_url}`} alt={recipe.title} />
+            // <img src={recipe.image_url} alt={recipe.title} />
           ) : (
             <div className="recipe-detail-image-placeholder">
               <span>📷</span>
@@ -576,13 +578,14 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
                   Array.isArray(recipe.step_images) && 
                   recipe.step_images[index] && (
                   <img 
-                        src={`https://cookbook-backend-kupo.onrender.com${recipe.step_images[index].image_url}`}
+                        src={recipe.step_images[index].image_url} //{`https://cookbook-backend-kupo.onrender.com${recipe.step_images[index].image_url}`}
                         alt={`Шаг ${index + 1}`} 
                         onError={(e) => {
                           console.error(`Failed to load image: ${recipe.step_images[index].image_url}`);
                           e.target.style.display = 'none';
                         }}
                       />
+                      // <img src={recipe.image_url} alt={recipe.title} />
                   )}
                 </div>
                 <div className="recipe-detail-step-content">
