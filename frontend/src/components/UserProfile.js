@@ -462,7 +462,7 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
     },
     { 
       label: 'С нами с', 
-      value: userData?.joinDate || '2023', 
+      value: userData?.joinDate || '2025', 
       icon: 'fa-calendar',
       onClick: null
     }
@@ -691,10 +691,10 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
                 <div className="stat-icon">
                   <i className={`fas ${stat.icon}`}></i>
                 </div>
-                <div className="stat-content">
+                {/* <div className="stat-content">
                   <div className="stat-value">{stat.value}</div>
                   <div className="stat-label">{stat.label}</div>
-                </div>
+                </div> */}
               </div>
             ))}
           </div>
