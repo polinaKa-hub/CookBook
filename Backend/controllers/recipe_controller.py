@@ -122,6 +122,95 @@ class RecipeController:
             print(f"Error updating recipe: {e}")
             return jsonify({'error': 'Failed to update recipe'}), 500
 
+    def create_recipe_with_steps(self, user_id=None):
+        """Создать рецепт с изображениями шагов"""
+        try:
+            print(f"DEBUG: Starting create_recipe_with_steps, user_id={user_id}")
+            
+            # Проверяем multipart/form-data
+            print(f"DEBUG: Request form data: {request.form}")
+            print(f"DEBUG: Request files: {request.files}")
+            
+            if not request.form and not request.files:
+                print("DEBUG: No form data or files")
+                return jsonify({'error': 'No data provided'}), 400
+            
+            # Получаем данные формы
+            title = request.form.get('title', '')
+            cooking_time = request.form.get('cooking_time', 0)
+            category = request.form.get('category', '')
+            difficulty = request.form.get('difficulty', 'Легкий')
+            ingredients = request.form.get('ingredients', '[]')
+            instructions = request.form.get('instructions', '[]')
+            servings = request.form.get('servings')
+            
+            print(f"DEBUG: Form data - title={title}, ingredients={ingredients[:50]}...")
+            
+            # Валидация
+            if not title:
+                return jsonify({'error': 'Title is required'}), 400
+            
+            main_image = request.files.get('main_image')
+            print(f"DEBUG: Main image received: {main_image}")
+            if main_image:
+                print(f"DEBUG: Main image filename: {main_image.filename}")
+            
+            # Получаем изображения шагов
+            step_images = []
+            i = 0
+            while f'step_images_{i}' in request.files:
+                file = request.files.get(f'step_images_{i}')
+                if file and file.filename:  # Проверяем, что файл не пустой
+                    step_images.append(file)
+                    print(f"DEBUG: Step image {i}: {file.filename}")
+                i += 1
+            
+            print(f"DEBUG: Total step images: {len(step_images)}")
+            
+            # Подготавливаем данные для сервиса
+            recipe_data = {
+                'title': title,
+                'ingredients': ingredients,
+                'instructions': instructions,
+                'cooking_time': int(cooking_time) if cooking_time else 0,
+                'category': category,
+                'difficulty': difficulty,
+                'servings': int(servings) if servings else 6
+            }
+            
+            # Добавляем основное изображение если есть
+            if main_image and main_image.filename:
+                recipe_data['main_image'] = main_image
+                print(f"DEBUG: Main image added to recipe_data")
+            
+            # Получаем объект пользователя
+            from models.user import User
+            user_obj = User.query.get(user_id)
+            
+            if not user_obj:
+                return jsonify({'error': 'User not found'}), 404
+            
+            print(f"DEBUG: Calling recipe_service.create_recipe_with_steps")
+            # Создаем рецепт
+            new_recipe = self.recipe_service.create_recipe_with_steps(
+                recipe_data, step_images, user_obj
+            )
+            
+            if new_recipe:
+                print(f"DEBUG: Recipe created successfully with ID: {new_recipe.id}")
+                # Возвращаем рецепт с изображениями шагов
+                recipe_dict = new_recipe.to_dict()
+                return jsonify(recipe_dict), 201
+            else:
+                print(f"DEBUG: Recipe creation failed")
+                return jsonify({'error': 'Failed to create recipe'}), 500
+                
+        except Exception as e:
+            print(f"Error in create_recipe_with_steps: {e}")
+            import traceback
+            traceback.print_exc()
+            return jsonify({'error': 'Internal server error'}), 500
+
     def update_recipe_with_steps(self, recipe_id, user_id=None):
         """Обновить рецепт с изображениями шагов"""
         try:
@@ -320,89 +409,3 @@ class RecipeController:
         recipes = self.recipe_service.get_user_recipes(user_id)
         return jsonify([recipe.to_dict() for recipe in recipes])
     
-    def create_recipe_with_steps(self, user_id=None):
-        """Создать рецепт с изображениями шагов"""
-        try:
-            print(f"DEBUG: Starting create_recipe_with_steps, user_id={user_id}")
-            
-            # Проверяем multipart/form-data
-            print(f"DEBUG: Request form data: {request.form}")
-            print(f"DEBUG: Request files: {request.files}")
-            
-            if not request.form and not request.files:
-                print("DEBUG: No form data or files")
-                return jsonify({'error': 'No data provided'}), 400
-            
-            # Получаем данные формы
-            title = request.form.get('title', '')
-            cooking_time = request.form.get('cooking_time', 0)
-            category = request.form.get('category', '')
-            difficulty = request.form.get('difficulty', 'Легкий')
-            ingredients = request.form.get('ingredients', '[]')
-            instructions = request.form.get('instructions', '[]')
-            
-            print(f"DEBUG: Form data - title={title}, ingredients={ingredients[:50]}...")
-            
-            # Валидация
-            if not title:
-                return jsonify({'error': 'Title is required'}), 400
-            
-            main_image = request.files.get('main_image')
-            print(f"DEBUG: Main image received: {main_image}")
-            if main_image:
-                print(f"DEBUG: Main image filename: {main_image.filename}")
-            
-            # Получаем изображения шагов
-            step_images = []
-            i = 0
-            while f'step_images_{i}' in request.files:
-                file = request.files.get(f'step_images_{i}')
-                if file and file.filename:  # Проверяем, что файл не пустой
-                    step_images.append(file)
-                    print(f"DEBUG: Step image {i}: {file.filename}")
-                i += 1
-            
-            print(f"DEBUG: Total step images: {len(step_images)}")
-            
-            # Подготавливаем данные для сервиса
-            recipe_data = {
-                'title': title,
-                'ingredients': ingredients,
-                'instructions': instructions,
-                'cooking_time': int(cooking_time) if cooking_time else 0,
-                'category': category,
-                'difficulty': difficulty
-            }
-            
-            # Добавляем основное изображение если есть
-            if main_image and main_image.filename:
-                recipe_data['main_image'] = main_image
-                print(f"DEBUG: Main image added to recipe_data")
-            
-            # Получаем объект пользователя
-            from models.user import User
-            user_obj = User.query.get(user_id)
-            
-            if not user_obj:
-                return jsonify({'error': 'User not found'}), 404
-            
-            print(f"DEBUG: Calling recipe_service.create_recipe_with_steps")
-            # Создаем рецепт
-            new_recipe = self.recipe_service.create_recipe_with_steps(
-                recipe_data, step_images, user_obj
-            )
-            
-            if new_recipe:
-                print(f"DEBUG: Recipe created successfully with ID: {new_recipe.id}")
-                # Возвращаем рецепт с изображениями шагов
-                recipe_dict = new_recipe.to_dict()
-                return jsonify(recipe_dict), 201
-            else:
-                print(f"DEBUG: Recipe creation failed")
-                return jsonify({'error': 'Failed to create recipe'}), 500
-                
-        except Exception as e:
-            print(f"Error in create_recipe_with_steps: {e}")
-            import traceback
-            traceback.print_exc()
-            return jsonify({'error': 'Internal server error'}), 500
