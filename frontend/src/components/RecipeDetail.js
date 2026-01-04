@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import './RecipeDetail.css';
 import Swal from 'sweetalert2';
 
@@ -362,7 +363,22 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
 
   return (
     <div className="recipe-detail-container">
-      
+        <Helmet>
+          <title>
+            {recipe?.title
+              ? `${recipe.title} — пошаговый рецепт`
+              : 'Рецепт — Cook Book'}
+          </title>
+
+          <meta
+            name="description"
+            content={
+              recipe
+                ? `Рецепт "${recipe.title}". Время приготовления: ${recipe.cooking_time} минут. Сложность: ${recipe.difficulty}. Количество порций: ${recipe.servings}.`
+                : 'Кулинарный рецепт с пошаговым описанием.'
+            }
+          />
+        </Helmet>
       {/* Шапка сайта */}
       <header className="recipe-detail-header">
         <div className="recipe-detail-header-content">
@@ -469,7 +485,7 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
       <div className="recipe-detail-image-section">
         <div className="recipe-detail-image">
           {recipe?.image_url ? (
-            <img src={recipe.image_url} alt={recipe.title} />
+            <img src={recipe.image_url} alt={recipe.title} loading="lazy"/>
             // <img src={`https://cookbook-backend-kupo.onrender.com${recipe.image_url}`} alt={recipe.title} />
             // <img src={recipe.image_url} alt={recipe.title} />
           ) : (
@@ -578,6 +594,7 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
                   <img 
                         src={recipe.step_images[index].image_url} //{`https://cookbook-backend-kupo.onrender.com${recipe.step_images[index].image_url}`}
                         alt={`Шаг ${index + 1}`} 
+                        loading="lazy"
                         onError={(e) => {
                           console.error(`Failed to load image: ${recipe.step_images[index].image_url}`);
                           e.target.style.display = 'none';
