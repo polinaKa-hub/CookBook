@@ -459,13 +459,13 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
       value: userData?.favorites_count || 0, 
       icon: 'fa-bookmark',
       onClick: () => isOwnProfile && setActiveTab('favorites')
-    },
-    { 
-      label: 'С нами с', 
-      value: userData?.joinDate || '2025', 
-      icon: 'fa-calendar',
-      onClick: null
     }
+    // { 
+    //   label: 'С нами с', 
+    //   value: userData?.joinDate || '2025', 
+    //   icon: 'fa-calendar',
+    //   onClick: null
+    // }
   ];
 
   if (loading) {
@@ -691,10 +691,10 @@ const UserProfile = ({ currentUser, profileUserId, onBack, onViewRecipe, onGoToM
                 <div className="stat-icon">
                   <i className={`fas ${stat.icon}`}></i>
                 </div>
-                {/* <div className="stat-content">
+                <div className="stat-content">
                   <div className="stat-value">{stat.value}</div>
                   <div className="stat-label">{stat.label}</div>
-                </div> */}
+                </div>
               </div>
             ))}
           </div>
