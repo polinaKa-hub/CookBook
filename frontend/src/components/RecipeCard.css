@@ -5,7 +5,7 @@
   margin-bottom: 24px;
   transition: all 0.3s ease;
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  border: 1px solid #eee;
+  border: 1px solid #dedede;
   overflow: hidden;
   transition: box-shadow 0.2s;
   cursor: pointer;
@@ -13,6 +13,7 @@
 
 .recipe-card:hover {
   transform: translateY(-8px);
+  transform: scale(1.05);
   box-shadow: 0 15px 30px rgba(0,0,0,0.1);
   border-color: #7DBA4A;
 }
@@ -73,14 +74,17 @@
 }
 
 .recipe-title:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); */
+  color: #7DBA4A;
+  
 }
 .recipe-author {
   color: #777777;
   font-size: 14px;
 }
 .recipe-author:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); */
+  color: #7DBA4A;
 }
 
 .recipe-meta {

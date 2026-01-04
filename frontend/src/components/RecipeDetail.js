@@ -349,17 +349,15 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
 
   // Функция для открытия окна входа
   const handleOpenLogin = () => {
-    // Открываем модальное окно входа
-    window.dispatchEvent(new CustomEvent('openAuthModal', { 
-      detail: { view: 'login' } 
-    }));
+    // Сохраняем текущий URL для возврата после авторизации
+    localStorage.setItem('returnUrl', window.location.pathname);
+    // Перенаправляем на главную с флагом для открытия модального окна
+    window.location.href = '/?auth=login';
   };
 
-  // Функция для открытия окна регистрации
   const handleOpenRegister = () => {
-    window.dispatchEvent(new CustomEvent('openAuthModal', { 
-      detail: { view: 'register' } 
-    }));
+    localStorage.setItem('returnUrl', window.location.pathname);
+    window.location.href = '/?auth=register';
   };
 
   return (

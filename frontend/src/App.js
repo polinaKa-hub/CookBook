@@ -90,6 +90,30 @@ function App() {
     checkAuth();
   }, []);
 
+
+  // Добавьте этот useEffect после существующего useEffect для навигации
+  useEffect(() => {
+    // Проверяем параметры URL для открытия модального окна
+    const searchParams = new URLSearchParams(window.location.search);
+    const authType = searchParams.get('auth');
+    
+    if (authType === 'login' || authType === 'register') {
+      setAuthView(authType);
+      setShowAuthModal(true);
+      
+      // Убираем параметр из URL без перезагрузки
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, newUrl);
+    }
+    
+    // Проверяем, нужно ли вернуться на предыдущую страницу
+    const returnUrl = localStorage.getItem('returnUrl');
+    if (returnUrl && currentUser) {
+      // Если пользователь авторизовался, можно перенаправить его обратно
+      localStorage.removeItem('returnUrl');
+      // Можно добавить логику для возврата на страницу рецепта
+    }
+  }, [currentUser]); 
   const checkAuth = async () => {
     try {
       const response = await fetch('https://cookbook-backend-kupo.onrender.com/api/auth/me', {
