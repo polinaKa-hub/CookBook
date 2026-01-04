@@ -19,12 +19,24 @@ from models.db import db
 db.init_app(app)
 # CORS(app, origins='*', supports_credentials=True)
 
-CORS(app, 
-     origins='*',  # Временно разрешаем всем
-     supports_credentials=True,  # Это ОБЯЗАТЕЛЬНО
-     allow_headers=["Content-Type", "Authorization", "X-Requested-With"],
-     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"]
+CORS(
+    app,
+    origins=[
+        "https://cookbook-client.onrender.com",
+        "http://localhost:3000"
+    ],
+    supports_credentials=True,
+    allow_headers=["Content-Type", "Authorization", "X-Requested-With"],
+    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"]
 )
+
+
+# CORS(app, 
+#      origins='*',  # Временно разрешаем всем
+#      supports_credentials=True,  # Это ОБЯЗАТЕЛЬНО
+#      allow_headers=["Content-Type", "Authorization", "X-Requested-With"],
+#      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"]
+# )
 
 # CORS(app, 
 #      origins=Config.CORS_ORIGINS, 
@@ -420,8 +432,8 @@ def get_user_recipes(user_id):
     recipes = Recipe.query.filter_by(author_id=user_id).all()
     return jsonify([recipe.to_dict() for recipe in recipes])
 
-@app.route('/api/recipes/<int:recipe_id>', methods=['DELETE', 'OPTIONS'])
-@cross_origin(supports_credentials=True)
+@app.route('/api/recipes/<int:recipe_id>', methods=['DELETE'])
+# @cross_origin(supports_credentials=True)
 def delete_recipe(recipe_id):
     session_id = request.cookies.get('session_id')
     print(f"DELETE DEBUG: Received session_id = {session_id}")  # Для отладки

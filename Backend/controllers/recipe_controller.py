@@ -207,15 +207,23 @@ class RecipeController:
         if not session_id:
             return jsonify({'error': 'Not authenticated'}), 401
         
-        from services.auth_service import AuthService
-        auth_service = AuthService()
-        user = auth_service.get_current_user(session_id)
+        # from services.auth_service import AuthService
+        # auth_service = AuthService()
+        # user = auth_service.get_current_user(session_id)
+        # if not user:
+        #     return jsonify({'error': 'Invalid session'}), 401
+        
+        # # Передаем пользователя в сервис
+        # if self.recipe_service.delete_recipe(recipe_id, user):
+        #     return jsonify({'message': 'Recipe deleted successfully'})
+        # return jsonify({'error': 'Recipe not found or access denied'}), 404
+        user = self.auth_service.get_current_user(session_id)
         if not user:
             return jsonify({'error': 'Invalid session'}), 401
-        
-        # Передаем пользователя в сервис
+
         if self.recipe_service.delete_recipe(recipe_id, user):
-            return jsonify({'message': 'Recipe deleted successfully'})
+            return jsonify({'message': 'Recipe deleted successfully'}), 200
+
         return jsonify({'error': 'Recipe not found or access denied'}), 404
     
     def search_recipes(self):
