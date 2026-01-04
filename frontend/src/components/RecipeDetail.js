@@ -363,22 +363,19 @@ const RecipeDetail = ({ recipe, currentUser, onBack, onAddToFavorites, onViewPro
 
   return (
     <div className="recipe-detail-container">
-        <Helmet>
-          <title>
-            {recipe?.title
-              ? `${recipe.title} — пошаговый рецепт`
-              : 'Рецепт — Cook Book'}
-          </title>
-
-          <meta
-            name="description"
-            content={
-              recipe
-                ? `Рецепт "${recipe.title}". Время приготовления: ${recipe.cooking_time} минут. Сложность: ${recipe.difficulty}. Количество порций: ${recipe.servings}.`
-                : 'Кулинарный рецепт с пошаговым описанием.'
-            }
-          />
-        </Helmet>
+      <Helmet>
+        <title>
+          {recipe?.title ? `${recipe.title} — пошаговый рецепт` : 'Рецепт — Cook Book'}
+        </title>
+        <meta
+          name="description"
+          content={
+            recipe
+              ? `Рецепт "${recipe.title}". Время приготовления: ${recipe.cooking_time || '-'} минут. Сложность: ${recipe.difficulty || '-'}`
+              : 'Кулинарный рецепт с пошаговым описанием.'
+          }
+        />
+      </Helmet>
       {/* Шапка сайта */}
       <header className="recipe-detail-header">
         <div className="recipe-detail-header-content">
